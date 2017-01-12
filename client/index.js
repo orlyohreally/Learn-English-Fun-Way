@@ -653,7 +653,9 @@
 		}
 		var k = -1;
 		var k1 = -1;
-		var k2 = -1;
+		var k2 = -1; // hovering what word
+		var k3 = -1; //pressing what word
+		var Pressed = {}; //for coordinates of clicked point
 		var l_a_ch = false;
 		var r_a_ch = false;
 		var login_ch = false;
@@ -731,39 +733,39 @@
 			}
 			}
 			// menu tasks are hovered
-		if(Mode.Tasks && (MenuItem.clicked > -1) && (mouseY >= MenuItem.topSpace * Math.min(Screen.k_width, Screen.k_height) && mouseY <= (MenuItem.topSpace + MenuItem.size) * Math.min(Screen.k_width, Screen.k_height))) {
-			//console.log("reacting1", k1)
-			i = 0;
-			t_a_width = 100*0.5;
-			//pX = MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem - MenuItem.firstItem);
-			pX = 2 * MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem) - 68;
-			pY =  MenuItem.topSpace;
-			while (i < Task.display) {
-				//console.log("reacting2", "i =", i, MenuItem.clicked, task_ch, mouseInRect(pX, pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace, MenuItem.size, 55/368*MenuItem.size))
-				//if(k1 == -1 && !(task_ch) && mouseX >= pX*Math.min(Screen.k_width, Screen.k_height)&& mouseX <= (pX + MenuItem.size)*Math.min(Screen.k_width, Screen.k_height) && mouseY >= (pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace + 55/368*MenuItem.size)*Math.min(Screen.k_width, Screen.k_height)){
-				if(k1 == -1 && !(task_ch) && mouseInRect(pX, pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace, MenuItem.size, 55/368*MenuItem.size)){
-					//console.log("reacting3", k1)
-					ctx.clearRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY  + (55 / 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height), (MenuItem.size)*Math.min(Screen.k_width, Screen.k_height), (55/ 368 * MenuItem.size)*Math.min(Screen.k_width, Screen.k_height));
-					drawTask(MenuItem.clicked, Task.firstTask + i, pX - 3, pY + (55 / 368 * MenuItem.size + 10) * i  + t_a_width + Task.topSpace - 3,  MenuItem.size + 6, 55/368*MenuItem.size + 6)
-					k1 = i;
-					i = Task.display + 1;
-					task_ch = true;
+			if(Mode.Tasks && (MenuItem.clicked > -1) && (mouseY >= MenuItem.topSpace * Math.min(Screen.k_width, Screen.k_height) && mouseY <= (MenuItem.topSpace + MenuItem.size) * Math.min(Screen.k_width, Screen.k_height))) {
+				//console.log("reacting1", k1)
+				i = 0;
+				t_a_width = 100*0.5;
+				//pX = MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem - MenuItem.firstItem);
+				pX = 2 * MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem) - 68;
+				pY =  MenuItem.topSpace;
+				while (i < Task.display) {
+					//console.log("reacting2", "i =", i, MenuItem.clicked, task_ch, mouseInRect(pX, pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace, MenuItem.size, 55/368*MenuItem.size))
+					//if(k1 == -1 && !(task_ch) && mouseX >= pX*Math.min(Screen.k_width, Screen.k_height)&& mouseX <= (pX + MenuItem.size)*Math.min(Screen.k_width, Screen.k_height) && mouseY >= (pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace + 55/368*MenuItem.size)*Math.min(Screen.k_width, Screen.k_height)){
+					if(k1 == -1 && !(task_ch) && mouseInRect(pX, pY + (55/ 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace, MenuItem.size, 55/368*MenuItem.size)){
+						//console.log("reacting3", k1)
+						ctx.clearRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY  + (55 / 368 * MenuItem.size + 10) * i + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height), (MenuItem.size)*Math.min(Screen.k_width, Screen.k_height), (55/ 368 * MenuItem.size)*Math.min(Screen.k_width, Screen.k_height));
+						drawTask(MenuItem.clicked, Task.firstTask + i, pX - 3, pY + (55 / 368 * MenuItem.size + 10) * i  + t_a_width + Task.topSpace - 3,  MenuItem.size + 6, 55/368*MenuItem.size + 6)
+						k1 = i;
+						i = Task.display + 1;
+						task_ch = true;
+					}
+					else{
+						i = i + 1;
+					}
 				}
-				else{
-					i = i + 1;
+				pX = 2 * MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem) - 68;
+				pY =  MenuItem.topSpace;
+				if((Mode.Tasks && (MenuItem.clicked > -1) && !(mouseY >= pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace * Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace + MenuItem.size) * Math.min(Screen.k_width, Screen.k_height)))&& (k1 > -1 && task_ch && !(mouseX >= (pX - 3)*Math.min(Screen.k_width, Screen.k_height)&& mouseX <= (pX + MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height) && mouseY >= (pY + (55/ 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace - 3)*Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace + 55/368*MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height)))){
+					ctx.clearRect((pX-3)*Math.min(Screen.k_width, Screen.k_height), (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace - 3)*Math.min(Screen.k_width, Screen.k_height), (MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height), (55/ 368 * MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height));
+					//ctx.fillRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY+ t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height), MenuItem.size*Math.min(Screen.k_width, Screen.k_height), 55/368*MenuItem.size*Math.min(Screen.k_width, Screen.k_height));
+					drawTask(MenuItem.clicked, Task.firstTask + k1, pX, pY + (55 / 368 * MenuItem.size + 10) * k1  + t_a_width + Task.topSpace,  MenuItem.size, 55/368*MenuItem.size)
+					//ctx.fillRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY + (55/368*MenuItem.size + 10)*k1 + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height) , MenuItem.size*Math.min(Screen.k_width, Screen.k_height), 55/368*MenuItem.size*Math.min(Screen.k_width, Screen.k_height) )
+					k1 = -1;
+					task_ch = false;
 				}
 			}
-			pX = 2 * MenuItem.leftSpace + 100*koef + 68 * (MenuItem.clicked - MenuItem.firstItem + 1) + MenuItem.size * (MenuItem.clicked - MenuItem.firstItem) - 68;
-			pY =  MenuItem.topSpace;
-			if((Mode.Tasks && (MenuItem.clicked > -1) && !(mouseY >= pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace * Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace + MenuItem.size) * Math.min(Screen.k_width, Screen.k_height)))&& (k1 > -1 && task_ch && !(mouseX >= (pX - 3)*Math.min(Screen.k_width, Screen.k_height)&& mouseX <= (pX + MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height) && mouseY >= (pY + (55/ 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace - 3)*Math.min(Screen.k_width, Screen.k_height) && mouseY <= (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace + 55/368*MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height)))){
-				ctx.clearRect((pX-3)*Math.min(Screen.k_width, Screen.k_height), (pY  + (55 / 368 * MenuItem.size + 10) * k1 + t_a_width + Task.topSpace - 3)*Math.min(Screen.k_width, Screen.k_height), (MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height), (55/ 368 * MenuItem.size + 6)*Math.min(Screen.k_width, Screen.k_height));
-				//ctx.fillRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY+ t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height), MenuItem.size*Math.min(Screen.k_width, Screen.k_height), 55/368*MenuItem.size*Math.min(Screen.k_width, Screen.k_height));
-				drawTask(MenuItem.clicked, Task.firstTask + k1, pX, pY + (55 / 368 * MenuItem.size + 10) * k1  + t_a_width + Task.topSpace,  MenuItem.size, 55/368*MenuItem.size)
-				//ctx.fillRect(pX*Math.min(Screen.k_width, Screen.k_height), (pY + (55/368*MenuItem.size + 10)*k1 + t_a_width + Task.topSpace)*Math.min(Screen.k_width, Screen.k_height) , MenuItem.size*Math.min(Screen.k_width, Screen.k_height), 55/368*MenuItem.size*Math.min(Screen.k_width, Screen.k_height) )
-				k1 = -1;
-				task_ch = false;
-			}
-		}
 			
 			//top arrow
 			if(Mode.Tasks && (Task.firstTask > 0)) {
@@ -1251,7 +1253,6 @@
 				exit_btn_ch = false;
 			}
 			//MatchTheAnimalsWithTheirNames word has been hovered
-			//finished here
 			if (Mode.MatchTheAnimalsWithTheirNames && !Mode.SignIn && !Mode.LogIn &&!word_ch) {
 				Array = [];
 				var animal_height = 400;
@@ -1306,14 +1307,31 @@
 					else edge = center;
 				}
 				var i = k2;
-				
-				if(!PointInRect({x:mouseX, y:mouseY}, Array[i])) {
+				if(k3 == -1 && !PointInRect({x:mouseX, y:mouseY}, Array[i])) {
 					console.log("left the rect");
 					wordFrame = Task.test[i].Wordsframe;
 					ctx.clearRect((Array[i].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 6)*Math.min(Screen.k_width, Screen.k_height));ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 12)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
+					size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5;
+					drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - 20 - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+					drawTestAnimals();
 					ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i]).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
 					word_ch = false;
 					k2 = -1;
+				}
+				if(k3 != -1){
+					console.log("dragging");
+					console.log("word_ch", word_ch);
+					wordFrame = Task.test[i].Wordsframe;
+					Array[i].x = Array[i].x + mouseX/Math.min(Screen.k_width, Screen.k_height) - Pressed.x/Math.min(Screen.k_width, Screen.k_height);
+					Array[i].y = Array[i].y + mouseY/Math.min(Screen.k_width, Screen.k_height) - Pressed.y/Math.min(Screen.k_width, Screen.k_height);
+					ctx.clearRect((Array[i].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 6)*Math.min(Screen.k_width, Screen.k_height));ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 12)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
+					size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5;
+					drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - 20 - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+					drawTestAnimals();
+					ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i]).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
+					
 				}
 			}
 			
@@ -2062,7 +2080,30 @@
 				}, 1);
 			}
 		}*/
-
+		function drawTestAnimals() {
+			var animal_height = 400;
+			var word_width = (Screen.width - (Task.test.length + 1) * 20)/ 5;
+			var word_height = 80;
+			var edge = 0;
+			var center = Screen.width / Math.min(Screen.k_width, Screen.k_height) / 2;
+			var top = Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height) + animal_height + 20 + word_height + 20;
+			//ctx.fillRect((center/2)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
+			//ctx.fillRect((center)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
+			//ctx.fillRect((3*center/2)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
+			ctx.drawImage(atlasAnimals,Task.asked.frame.x, Task.asked.frame.y, Task.asked.frame.w, Task.asked.frame.h, (Screen.width - Task.asked.frame.w*animal_height/Task.asked.frame.h*Math.min(Screen.k_width, Screen.k_height)) / 2, Screen.height * 0.2 + (20 + 20) * Math.min(Screen.k_width, Screen.k_height), Task.asked.frame.w*animal_height/Task.asked.frame.h*Math.min(Screen.k_width, Screen.k_height), animal_height*Math.min(Screen.k_width, Screen.k_height));
+				
+			for(var i = 0; i < Task.test.length; i++) {
+				var wordFrame = Task.test[i].Wordsframe;
+				//console.log(wordFrame);
+				if(k3 != i)
+					ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
+				if(i % 2){
+					top = top + word_height + 30;
+					edge = 0;
+				}
+				else edge = center;
+			}
+		}
 		MainCanvas.addEventListener("mouseup", checkClick);
 		function checkClick(mouseEvent){
 			if(Mode.Tasks && MenuItem.clicked > -1) {
@@ -2426,6 +2467,7 @@
 					ctx.fillText("fill all the information", (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				}
 			}
+			
 			function drawAnimals(){
 				Task.test = getRandomArray(Animals, [[],[],[],[],[],[]]);
 				console.log("test", Task.test, Animals.length - 1);
@@ -2452,27 +2494,9 @@
 				Task.asked = animal;
 				console.log("i", i, animal);
 				ctx.fillStyle="#000000";
-				ctx.drawImage(atlasAnimals,animal.frame.x, animal.frame.y, animal.frame.w, animal.frame.h, (Screen.width - animal.frame.w*animal_height/animal.frame.h*Math.min(Screen.k_width, Screen.k_height)) / 2, Screen.height * 0.2 + (20 + 20) * Math.min(Screen.k_width, Screen.k_height), animal.frame.w*animal_height/animal.frame.h*Math.min(Screen.k_width, Screen.k_height), animal_height*Math.min(Screen.k_width, Screen.k_height));
-				
-				var word_width = (Screen.width - (Task.test.length + 1) * 20)/ 5;
-				var word_height = 80;
-				var edge = 0;
-				var center = Screen.width / Math.min(Screen.k_width, Screen.k_height) / 2;
-				var top = Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height) + animal_height + 20 + word_height + 20;
-				//ctx.fillRect((center/2)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
-				//ctx.fillRect((center)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
-				//ctx.fillRect((3*center/2)*Math.min(Screen.k_width, Screen.k_height), 0, 10, 10000);
-				
-				for(var i = 0; i < Task.test.length; i++) {
-					var wordFrame = Task.test[i].Wordsframe;
-					console.log(wordFrame);
-					ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
-					if(i % 2){
-						top = top + word_height + 30;
-						edge = 0;
-					}
-					else edge = center;
-				}
+				size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5;
+				drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - 20 - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+				drawTestAnimals();
 				
 			}
 			function checkloadedAnimals() {
@@ -2678,9 +2702,62 @@
 				if(i < Array.length) {
 					responsiveVoice.speak(Task.test[i].Word, Profile.Accent);
 				}
+				else {
+					ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
+					size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5;
+					drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - 20 - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+						
+					drawTestAnimals();
+				}
+				k3 = -1;
+				
 			}
 		}
-	drawTitle()
+		MainCanvas.addEventListener("mousedown", MouseDown);
+		//finished here
+		function MouseDown(mouseEvent){
+			if (Mode.MatchTheAnimalsWithTheirNames && !Mode.SignIn && !Mode.LogIn) {
+				Array = [];
+				var animal_height = 400;
+				var word_width = (Screen.width - (Task.test.length + 1) * 20)/ 5;
+				var word_height = 80;
+				var edge = 0;
+				var center = Screen.width / Math.min(Screen.k_width, Screen.k_height) / 2;
+				var top = Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height) + animal_height + 20 + word_height + 20;
+				for(var i = 0; i < Task.test.length; i++) {
+					var wordFrame = Task.test[i].Wordsframe;
+					Array[i] = {};
+					Array[i].x = (edge + center/2-wordFrame.w*word_height/wordFrame.h/2);
+					Array[i].y = top;
+					Array[i].w = wordFrame.w*word_height/wordFrame.h;
+					Array[i].h = word_height;
+					if(i % 2){
+						top = top + word_height + 30;
+						edge = 0;
+					}
+					else edge = center;
+				}
+				var i = checkPoint({x:mouseX, y:mouseY}, Array);
+				if(i < Array.length) {
+					k3 = i;
+					console.log("pressed", k3, "word");
+					Pressed.x = mouseX;
+					Pressed.y = mouseY;
+					console.log(Pressed);
+					
+				}
+				else {
+					k3 = -1;
+					console.log("mouseup");
+					delete Pressed.x;
+					delete Pressed.y;
+				}
+			}
+		}
+
+
+
+	
 	var Properties = {};
 	Properties.Topics = [];
 	function getProperties() {
