@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.2.2</string>
         <key>fileName</key>
-        <string>C:/Users/Orly/Desktop/Learn English Fun Way/assets/Menu-Items/buttons.tps</string>
+        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Menu-Items/buttons.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -188,27 +188,33 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../../../Game/assets/Menu-Items/help_btn.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/left-arrow.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/login_btn1.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/profile_boy.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/profile_girl.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/right-arrow.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/sound_off.png</key>
-            <key type="filename">../../../Game/assets/Menu-Items/sound_on.png</key>
-            <key type="filename">../../../Game/assets/Reward/rewards_btn.png</key>
             <key type="filename">exit_btn.png</key>
+            <key type="filename">help_btn.png</key>
             <key type="filename">info_btn.png</key>
+            <key type="filename">left-arrow.png</key>
+            <key type="filename">login_btn1.png</key>
             <key type="filename">pause_btn.png</key>
             <key type="filename">phrase_of_the_day_btn.png</key>
             <key type="filename">play_btn.png</key>
+            <key type="filename">profile_boy.png</key>
+            <key type="filename">profile_girl.png</key>
             <key type="filename">quiz.png</key>
             <key type="filename">restart_btn.png</key>
+            <key type="filename">right-arrow.png</key>
             <key type="filename">sign_up_btn.png</key>
+            <key type="filename">sound_off.png</key>
+            <key type="filename">sound_on.png</key>
             <key type="filename">stop_btn.png</key>
             <key type="filename">title1.png</key>
+            <key type="filename">../Reward/correct.png</key>
+            <key type="filename">../Reward/dark-star.png</key>
+            <key type="filename">../Reward/heart.png</key>
             <key type="filename">../Reward/progress_btn.png</key>
+            <key type="filename">../Reward/red-heart.png</key>
+            <key type="filename">../Reward/rewards_btn1.png</key>
+            <key type="filename">../Reward/star-board.png</key>
             <key type="filename">../Reward/star.png</key>
+            <key type="filename">../Reward/wrong.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -216,15 +222,6 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>../../../Game/assets/Menu-Items/help_btn.png</filename>
-            <filename>../../../Game/assets/Menu-Items/left-arrow.png</filename>
-            <filename>../../../Game/assets/Menu-Items/profile_boy.png</filename>
-            <filename>../../../Game/assets/Menu-Items/profile_girl.png</filename>
-            <filename>../../../Game/assets/Menu-Items/right-arrow.png</filename>
-            <filename>../../../Game/assets/Menu-Items/sound_off.png</filename>
-            <filename>../../../Game/assets/Menu-Items/sound_on.png</filename>
-            <filename>../../../Game/assets/Menu-Items/login_btn1.png</filename>
-            <filename>../../../Game/assets/Reward/rewards_btn.png</filename>
             <filename>sign_up_btn.png</filename>
             <filename>../Reward/progress_btn.png</filename>
             <filename>title1.png</filename>
@@ -237,6 +234,21 @@
             <filename>stop_btn.png</filename>
             <filename>play_btn.png</filename>
             <filename>restart_btn.png</filename>
+            <filename>profile_girl.png</filename>
+            <filename>profile_boy.png</filename>
+            <filename>login_btn1.png</filename>
+            <filename>left-arrow.png</filename>
+            <filename>help_btn.png</filename>
+            <filename>../Reward/rewards_btn1.png</filename>
+            <filename>sound_on.png</filename>
+            <filename>sound_off.png</filename>
+            <filename>right-arrow.png</filename>
+            <filename>../Reward/dark-star.png</filename>
+            <filename>../Reward/red-heart.png</filename>
+            <filename>../Reward/heart.png</filename>
+            <filename>../Reward/star-board.png</filename>
+            <filename>../Reward/correct.png</filename>
+            <filename>../Reward/wrong.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
