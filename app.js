@@ -1,6 +1,6 @@
 var mongojs = require("mongojs");
 var bcrypt = require("bcryptjs"), SALT_WORK_FACTOR = 10;
-var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
 //db.Topics.find({"Name":"Animals"}, function(err, res){console.log(res[0])})
 
 //db.SpreadSheets.aggregate( [ { $match:  { "Name": "menu_items"}}, {$lookup: {    from: "db.Topics",     localField: "Content.filename",    foreignField: "Name",    as: "Properties"}  }])
@@ -109,7 +109,37 @@ io.sockets.on('connection', function(socket) {
 			getTaskFrames();
 		}
 	})
-	
+	function getButtons() {
+		db.SpreadSheets.find({"Name": "Buttons"}, function(err, res){
+			res = res[0].Frames;
+			Properties.Buttons = {};
+			for(i = 0; i < res.length; i++){
+				delete res[i].rotated;
+				delete res[i].trimmed;
+				delete res[i].spriteSourceSize;
+				delete res[i].sourceSize;
+				delete res[i].pivot;
+				//console.log(res);
+				Properties.Buttons[res[i].filename] = res[i].frame;
+				
+			}
+		})
+	}
+	function getForms() {
+		db.SpreadSheets.find({"Name": "Forms"}, function(err, res){
+			res = res[0].Frames;
+			Properties.Forms = {};
+			for(i = 0; i < res.length; i++){
+				delete res[i].rotated;
+				delete res[i].trimmed;
+				delete res[i].spriteSourceSize;
+				delete res[i].sourceSize;
+				delete res[i].pivot;
+				Properties.Forms[res[i].filename] = res[i].frame;
+				//console.log(Properties.Forms[res[i].filename]);
+			}
+		})
+	}
 	function getTaskFrames() {
 		db.Exercise.find({}, function(err, res){
 		Properties.Tasks = [];
@@ -131,11 +161,15 @@ io.sockets.on('connection', function(socket) {
 			}
 			
 		}
+		getButtons();
+		getForms();
 		//console.log(Properties.Topics, Properties.Tasks);
 		console.log("sending");
 		socket.emit('getProperties', {
 				topics:Properties.Topics,
-				tasks:Properties.Tasks
+				tasks:Properties.Tasks,
+				buttons:Properties.Buttons,
+				forms:Properties.Forms
 			});	
 		})	
 	}
@@ -195,15 +229,17 @@ io.sockets.on('connection', function(socket) {
 	socket.on('auth', function(data){
 		db.Users.find({"UserName":data.User.UserName}, function(err, res){
 			if(res) {
+				console.log(res);
 				if(!res.length) {
 					console.log("emitting false");
 					socket.emit('auth', {res: false});
 				}
 				else {
 					console.log("res", res[0].Password);
+					var User = res[0];
 					bcrypt.compare(data.User.Password,res[0].Password, function(err, res) {
 						console.log("emitting", res);
-						socket.emit('auth', {res:res});
+						socket.emit('auth', {res:res, User: User});
 					})
 				}
 			}
@@ -222,5 +258,7 @@ io.sockets.on('connection', function(socket) {
 			})
 		})
 	})						
-	
+	socket.on('Result', function(data){
+		db.Results.insert(data.Result, function(err, res){});
+	})
 })
