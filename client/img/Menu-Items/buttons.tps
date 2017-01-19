@@ -188,7 +188,9 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">drag-flick.png</key>
             <key type="filename">exit_btn.png</key>
+            <key type="filename">flick-up.png</key>
             <key type="filename">help_btn.png</key>
             <key type="filename">info_btn.png</key>
             <key type="filename">left-arrow.png</key>
@@ -205,7 +207,9 @@
             <key type="filename">sound_off.png</key>
             <key type="filename">sound_on.png</key>
             <key type="filename">stop_btn.png</key>
+            <key type="filename">tap.png</key>
             <key type="filename">title1.png</key>
+            <key type="filename">touch-and-hold.png</key>
             <key type="filename">../Reward/correct.png</key>
             <key type="filename">../Reward/dark-star.png</key>
             <key type="filename">../Reward/heart.png</key>
@@ -249,6 +253,10 @@
             <filename>../Reward/star-board.png</filename>
             <filename>../Reward/correct.png</filename>
             <filename>../Reward/wrong.png</filename>
+            <filename>tap.png</filename>
+            <filename>touch-and-hold.png</filename>
+            <filename>drag-flick.png</filename>
+            <filename>flick-up.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

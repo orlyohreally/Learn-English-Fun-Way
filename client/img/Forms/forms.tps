@@ -191,6 +191,9 @@
             <key type="filename">log_in_form.png</key>
             <key type="filename">log_in_form_cancel_btn.png</key>
             <key type="filename">log_in_form_login_btn.png</key>
+            <key type="filename">result_form.png</key>
+            <key type="filename">result_form_okay_btn.png</key>
+            <key type="filename">result_form_try_again_btn.png</key>
             <key type="filename">sign_in_form.png</key>
             <key type="filename">sign_in_form_cancel_btn.png</key>
             <key type="filename">sign_in_form_save_btn.png</key>
@@ -209,6 +212,9 @@
             <filename>log_in_form.png</filename>
             <filename>sign_in_form_signin_btn.png</filename>
             <filename>sign_in_form_save_btn.png</filename>
+            <filename>result_form.png</filename>
+            <filename>result_form_okay_btn.png</filename>
+            <filename>result_form_try_again_btn.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

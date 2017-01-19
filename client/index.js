@@ -1,67 +1,5 @@
 (function(){
 	socket = io();
-	/*var Topic_count = 0;
-	var topicPropertiesRecieved = false;
-	socket.on('TopicCount', function(data){
-		Topic_count = data.msg;
-		var T_i = 0;
-		while(T_i < Topic_count) {
-			if(!topicPropertiesRecieved) {
-				getTopicProperties(T_i);
-				T_i++;
-			}
-			else
-				break;
-		}
-	});
-	console.log("Topic count = ", Topic_count);
-	function getTopicProperties(T_i) {
-		if(typeof (Properties.Topics[T_i]) == "undefined") {
-			socket.emit('needTopicProperties', 
-				{
-					name:"menu_items",
-					T_index:T_i
-					});
-			checkPropertiesTopic();
-			console.log("topicPropertiesRecieved now is", topicPropertiesRecieved);
-			if(!topicPropertiesRecieved) {
-			setTimeout(function(){
-				socket.on('getTopicProperties' + T_i, function(data){
-				console.log('getTopicProperties' + T_i);
-				Properties.Topics[T_i] = data.msg;
-				console.log(Properties.Topics)
-				
-				//console.log("drawing ", i)
-				//clearMenuItemRect(pX - 10, pY-10, pW + 20, pH + 20);
-				//ctx.drawImage(atlasMenuItem, frame.x, frame.y, frame.w, frame.h, pX * Math.min(Screen.k_width, Screen.k_height), pY * Math.min(Screen.k_width, Screen.k_height), pW * Math.min(Screen.k_width, Screen.k_height), pH * Math.min(Screen.k_width, Screen.k_height));
-			});}, 0.5);
-			}
-			//getTopicProperties(T_i);
-			
-		}
-	}
-	function checkPropertiesTopic() {
-		topicPropertiesRecieved = true;
-		if((Properties.Topics).length == Topic_count)
-			topicPropertiesRecieved = false;
-		else {
-			var i = 0;
-			while(i < Topic_count) {
-				console.log("checking ", i);
-				if(typeof (Properties.Topics[i]) == "undefined"){
-					topicPropertiesRecieved = false;
-					break;
-				}
-				i++;
-				console.log("topicPropertiesRecieved", topicPropertiesRecieved)
-			}
-		}
-		console.log("topicPropertiesRecieved", topicPropertiesRecieved)
-	}
-	console.log("topicPropertiesRecieved", topicPropertiesRecieved)
-	console.log(Properties.Topics);
-	console.log("trying to load everything")*/
-	
 	$(document).ready(function(){
 	
 		var ctx = document.getElementById("MainCanvas").getContext("2d");
@@ -70,17 +8,6 @@
 		
 		/************************************Resizing*******************************************************/
 			
-		/*var c = $('#MainCanvas');
-		var ct = c.get(0).getContext('2d');
-		var container = $(c).parent();
-		$(window).resize(respondCanvas);*/
-
-		/*$(window).load(function() {
-
-			$(window).resize(function() {
-			   respondCanvas()
-			});
-		});*/
 		var c = $('#MainCanvas');
 		var ct = c.get(0).getContext('2d');
 		var container = $(c).parent();
@@ -143,8 +70,6 @@
 			Screen = {};
 			Screen.width = $(container).width();
 			Screen.height = $(container).height();
-			//##Screen.height = document.getElementById('MainCanvas').clientHeight;
-			//Screen.width = document.getElementById('MainCanvas').clientWidth;
 			clearScreenRect(0, 0, Screen.width/Math.min(Screen.k_width, Screen.k_height), Screen.height/Math.min(Screen.k_width, Screen.k_height))
 			MenuItem.rwidth = Screen.width;
 			MenuItem.rheight = Screen.height * 0.6;
@@ -190,12 +115,7 @@
 			if(MenuItem.firstItem + MenuItem.display > MenuItem.itemsCount) {
 				MenuItem.firstItem = MenuItem.itemsCount - MenuItem.display;
 			}
-			//here
 			MenuItem.starts = 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height);
-			/*if(0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) > 1.6 * Title.size*130/470) {
-				MenuItem.starts = Title.size*130/470 + 2 * 20;
-				console.log("bad")
-			}*/
 			MenuItem.topSpace = 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + (Screen.height * 0.6 / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 			if(MenuItem.starts != 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height)) {
 				MenuItem.topSpace = MenuItem.starts + 2 * 20;
@@ -217,7 +137,6 @@
 				Rewards.topSpace = MenuItem.topSpace + MenuItem.size + 20;
 			}
 			
-			//##Rewards.leftSpace = MenuItem.leftSpace;
 			Rewards.leftSpace = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - 4 * Rewards.size - 3 * 68) / 2
 			console.log(Rewards.leftSpace, Screen.width / Math.min(Screen.k_width, Screen.k_height) - (Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68 + Rewards.size))
 			Profile.rwidth = Screen.width * 0.3;
@@ -230,22 +149,12 @@
 				Profile.size_btn = 75/(228 + 6 * 75) * (3 * Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height) - 3 * 2 * 20 - 3 * 2 * 5 + 2 * 5)*228/75;
 			}
 			
-			/*ctx.fillStyle="#F7FE2E";
-			ctx.fillRect(0, 0, Screen.width, (MenuItem.starts) * Math.min(Screen.k_width, Screen.k_height));
-			ctx.fillRect(0, (MenuItem.ends) * Math.min(Screen.k_width, Screen.k_height), Screen.width, Screen.height);
-			ctx.fillStyle="#000000";*/
-			
 			initMenu();
 			
 			ctx.fillStyle="#000000";
 			
 		}
-		//Initial call 
 		
-		
-		
-
-
 		/************************************Resizing ended***********************************************/
 		
 		function loadThumbnail(name){
@@ -259,22 +168,12 @@
 		loadThumbnail(name);
 		k1 = -1;
 		function DrawMenuItem(i, j, pX, pY, pW, pH){
-			
 			var X = 368 * i;
 			var Y = 0;
 			var W = 368;
 			var H = 368;
-			//console.log("Properties.Topics[i]", Properties.Topics[i])
 			var frame = Properties.Topics[i].Frame;
-			//var frame = Properties[i].Properties[0].frame;
-			//console.log(frame)
-			//ctx.drawImage(atlasMenuItem, X, Y, W, H, pX * Math.min(Screen.k_width, Screen.k_height), pY * Math.min(Screen.k_width, Screen.k_height), pW * Math.min(Screen.k_width, Screen.k_height), pH * Math.min(Screen.k_width, Screen.k_height));
 			ctx.drawImage(atlasMenuItem, frame.x, frame.y, frame.w, frame.h, pX * Math.min(Screen.k_width, Screen.k_height), pY * Math.min(Screen.k_width, Screen.k_height), pW * Math.min(Screen.k_width, Screen.k_height), pH * Math.min(Screen.k_width, Screen.k_height));
-			
-			/*console.log("drawing", i, "menuitem", Properties.Topics)
-			
-			*///##draw here
-			delete X, Y, W, H, pX, pY, pW, pH;
 		}
 		var atlasMenuItem = new Image();
 		function drawMenuItems(){
@@ -286,7 +185,6 @@
 					var pY =  MenuItem.topSpace;
 					pW = MenuItem.size;
 					pH = MenuItem.size;
-					//console.log("calling drawMenuItem")
 					DrawMenuItem(i, j, pX, pY, pW, pH);
 				}
 				i = i + 1;
@@ -298,7 +196,6 @@
 		}
 		MenuItem.loadedMenuItems;
 		function loadMenuItems(){
-			// Load image and the json that defines locations
 			atlasMenuItem.src = 'client/img/Menu-Items/menu-items.png';
 			atlasMenuItem.addEventListener("load", function() {
 				MenuItem.loadedMenuItems = true;
@@ -308,7 +205,6 @@
 		var atlasAnimals = new Image();
 		Task.loadedAnimals;
 		function loadAnimals(){
-			// Load image and the json that defines locations
 			console.log("loading animals");
 			atlasAnimals.src = 'client/img/Animals/animals.png';
 			atlasAnimals.addEventListener("load", function() {
@@ -318,10 +214,17 @@
 		var atlasAnimalsWords = new Image();
 		Task.loadedAnimalsWords;
 		function loadAnimalsWords(){
-			// Load image and the json that defines locations
 			atlasAnimalsWords.src = 'client/img/Animals/animal-words.png';
 			atlasAnimalsWords.addEventListener("load", function() {
 				Task.loadedAnimalsWords = true;
+			})
+		}
+		var atlasNumbers = new Image();
+		Task.loadedNumbers;
+		function loadNumbers(){
+			atlasNumbers.src = 'client/img/Numbers/numbers.png';
+			atlasNumbers.addEventListener("load", function() {
+				Task.loadedNumbers = true;
 			})
 		}
 		function clearMenuItemRect(x, y, width, height) {
@@ -356,9 +259,6 @@
 			var frame = Properties.Buttons["progress_btn.png"];
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
-		/*function clearRewardsRect(x, y, width, height){
-			ctx.clearRect(x * Math.min(Rewards.k_width, Rewards.k_height), y * Math.min(Rewards.k_width, Rewards.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
-		}*/
 		function drawPhrasesButton(x, y, width, height){
 			var frame = Properties.Buttons["phrase_of_the_day_btn.png"];
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
@@ -367,9 +267,6 @@
 			var frame = Properties.Buttons["quiz_btn.png"];
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
-		/*function clearScreenRect(x, y, width, height){
-			ctx.clearRect(x * Math.min(Screen.k_width, Screen.k_height) , y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height) , height * Math.min(Screen.k_width, Screen.k_height))
-		}*/
 		function drawLogInButton(x, y, width,height){
 			var frame = Properties.Buttons["login_btn.png"];
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
@@ -419,6 +316,24 @@
 			var frame = Properties.Forms["sign_in_form.png"];
 			ctx.drawImage(atlasForms, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
+		function drawResultForm(x, y, width, height) {
+			var frame = Properties.Forms["result_form.png"];
+			console.log("drawResultForm", frame);
+			ctx.drawImage(atlasForms, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
+		function drawResultOkayButton(x, y, width, height) {
+			var frame = Properties.Forms["result_form_okay_btn.png"];
+			ctx.drawImage(atlasForms, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
+		function drawResultTryAgainButton(x, y, width, height) {
+			var frame = Properties.Forms["result_form_try_again_btn.png"];
+			ctx.drawImage(atlasForms, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
+		function drawDigit(n, x, y, width, height, type = "") {
+			console.log(type + n + ".png")
+			var frame = Properties.Numbers[type + "-" + n + ".png"];
+			ctx.drawImage(atlasNumbers, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
 		function drawLogInForm(x, y, width, height) {
 			var frame = Properties.Forms["log_in_form.png"];
 			ctx.drawImage(atlasForms, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
@@ -450,12 +365,10 @@
 		
 		function drawCorrect(x, y, width, height) {
 			var frame = Properties.Buttons["correct.png"];
-			//console.log("drawing correct", frame);
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
 		function drawWrong(x, y, width, height) {
 			var frame = Properties.Buttons["wrong.png"];
-			//console.log("drawing wrong", frame);
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
 		function drawRedHeart(x, y, width, height) {
@@ -464,6 +377,14 @@
 		}
 		function drawHeart(x, y, width, height) {
 			var frame = Properties.Buttons["heart.png"];
+			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
+		function drawDarkStar(x, y, width, height) {
+			var frame = Properties.Buttons["dark-star.png"];
+			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+		}
+		function drawStar(x, y, width, height) {
+			var frame = Properties.Buttons["star.png"];
 			ctx.drawImage(atlasButtons, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
 		function fillRect(x, y, width, height) {
@@ -490,10 +411,9 @@
 				return true
 			return false;
 		}
-		
-		function getProperties(spreadsheet, image) {
-			//var query = db.SpreadSheets.find({"Name": spreadsheet});
-			//return query;
+		function speak(Word) {
+			if(sound_on)
+				responsiveVoice.speak(Word, Profile.Accent);
 		}
 		var Forms_loaded = false;
 		var atlasForms = new Image();
@@ -540,11 +460,10 @@
 				drawQuizButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
 			}
 			if(!Profile.LoggedIn) {
-			//Log in button
-			//drawLogInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - 150 - MenuItem.leftSpace, 20, 150, 150*75/228)
-			drawLogInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace, 20, Profile.size_btn, Profile.size_btn*75/228)
-			//Sign in button
-			drawSignInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) -  Profile.size_btn - MenuItem.leftSpace, (20 + 5) + Profile.size_btn*75/228, Profile.size_btn, Profile.size_btn*75/228)
+				//Log in button
+				drawLogInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace, 20, Profile.size_btn, Profile.size_btn*75/228)
+				//Sign in button
+				drawSignInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) -  Profile.size_btn - MenuItem.leftSpace, (20 + 5) + Profile.size_btn*75/228, Profile.size_btn, Profile.size_btn*75/228)
 			}
 			//Sound on button
 			if(sound_on)
@@ -560,8 +479,6 @@
 		}
 		/************************************Starting*******************************************************/
 		
-		//loadMenuItems();
-		//loadButtons();
 		function showForms() {
 			if(Mode.LogIn){
 				showLogInForm()
@@ -633,20 +550,16 @@
 			else {
 				if(Mode.MatchTheAnimalsWithTheirNames) {
 					console.log("resizing on resize");
-					drawTestAnimals();
-					
+					drawTestAnimals();					
+				}
+				else {
+					showResultForm(Task.Result.Answers, 6);
 				}
 			}
+			loadNumbers();
 			drawHeader();
-			readyToShowForms();
-			
+			readyToShowForms();			
 		}
-		//initMenu();
-
-		
-
-		//var audio_MainMenu = new Audio('audio_main_menu.wav');
-		//audio_MainMenu.play();
 
 		var mouseX;
 		var mouseY;
@@ -659,7 +572,6 @@
 				scaleY = MainCanvas.height / rect.height;
 				mouseX = (mouseEvent.clientX - rect.left) * scaleX;   // scale mouse coordinates after they have
 				mouseY = (mouseEvent.clientY - rect.top) * scaleY;
-				//MenuItem.ctx.fillText([mouseX, mouseY], mouseX, mouseY);
 				HoverMenuItem(mouseX, mouseY);
 			
 		}
@@ -684,7 +596,6 @@
 		function checkPoint(Point, Array) {
 			var i = 0;
 			while(i < Array.length) {
-				//fillRect(Array[i].x, Array[i].y, Array[i].w, Array[i].h);
 				if(PointInRect(Point, Array[i])) {
 					return i;
 					i = Array.length + 1;
@@ -734,25 +645,21 @@
 				l_a_y =  MenuItem.topSpace + MenuItem.size / 2 - l_a_height / 2;
 				
 				clearMenuItemRect(l_a_x, l_a_y , l_a_width, l_a_height);
-				//clearMenuItemRect((MenuItem.rspace - koef*100) / 2 , 125 , koef*100, koef*100*226/152);
-				dx = -5;
-				dy = -5;
-				dw = 10;
-				dh = 10;
+				var dx = -5;
+				var dy = -5;
+				var dw = 10;
+				var dh = 10;
 				drawLeftArrow(l_a_x + dx, l_a_y + dy, l_a_width + dw, l_a_height + dh);
 				l_a_ch = true;
 				delete l_a_x, l_a_y, l_a_width, l_a_height, r_a_x, r_a_y, r_a_width, r_a_height;
-				delete dx, dy, dw, dh;
-				//document.body.style.cursor = "hand";
 			}else if ((l_a_ch) && !(mouseX >= Math.min(Screen.k_width, Screen.k_height) * (MenuItem.leftSpace - 5) && mouseX <= Math.min(Screen.k_width, Screen.k_height) * (MenuItem.leftSpace + koef*100 + 5) && mouseY >=  Math.min(Screen.k_width, Screen.k_height) * ( MenuItem.topSpace + MenuItem.size / 2 - l_a_height / 2 - 5)  && mouseY <= Math.min(Screen.k_width, Screen.k_height) * ( MenuItem.topSpace + MenuItem.size / 2 - l_a_height / 2 + koef*100*226/152 + 5) )) {	
-				dx = -5;
-				dy = -5;
-				dw = 10;
-				dh = 10;
+				var dx = -5;
+				var dy = -5;
+				var dw = 10;
+				var dh = 10;
 				clearMenuItemRect((MenuItem.leftSpace + dx),  (MenuItem.topSpace + MenuItem.size / 2 - l_a_height / 2 + dy) , (koef*100 + dw), (koef*100*226/152 + dh));
 				drawLeftArrow(MenuItem.leftSpace ,  MenuItem.topSpace + MenuItem.size / 2 - l_a_height / 2 , koef*100, koef*100*226/152);
 				l_a_ch = false;
-				delete dx, dy, dw, dh;
 			}
 			}
 			//right arrow is hovered
@@ -1379,7 +1286,7 @@
 				}
 				var i = k2;
 				if(k3 == -1 && !PointInRect({x:mouseX, y:mouseY}, Array[i])) {
-					//console.log("left the rect");
+					console.log("left the rect");
 					wordFrame = Task.test[i].Wordsframe;
 					ctx.clearRect((Array[i].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 6)*Math.min(Screen.k_width, Screen.k_height));
 					ctx.drawImage(atlasAnimalsWords, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 12)*Math.min(Screen.k_width, Screen.k_height));
@@ -1782,7 +1689,7 @@
 			setTimeout(function(){
 			if(sound_on && !Mode.Exercise) {
 				if(MenuItem.chosen != j)
-					responsiveVoice.speak(MenuItem.ItemList[j], Profile.Accent);
+					speak(MenuItem.ItemList[j]);
 				MenuItem.chosen = MenuItem.clicked;
 				
 				MenuItem.audio_played = true;
@@ -1820,6 +1727,75 @@
 					setTimeout(function(){
 						showLogInForm();
 					}, 1);
+				}
+		}
+		function countPoints(Answers, TaskN, Max) {
+			var points = 0;
+			for (var i = 0; i < Answers.length; i++) {
+				points = points + Max + 1 - Answers[i].Attempts;
+			}
+			console.log(points);
+			return points;
+		}
+		function showResultForm(Answers, Total, Max){
+				if(Profile.LoggedIn)
+					socket.emit("Result", {Result: Task.Result});
+				var Correct = Answers.length;
+				console.log(Correct);
+				if(Forms_loaded){
+					var frame = Properties.Forms["result_form.png"];
+					var Result_form = {};
+					Result_form.h = MenuItem.size;
+					Result_form.w = Result_form.h * frame.w / frame.h;
+					Result_form.x = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - Result_form.w) / 2;
+					Result_form.y = (Screen.height / Math.min(Screen.k_width, Screen.k_height) - Result_form.h) / 2;
+					
+					drawResultForm(Result_form.x, Result_form.y, Result_form.w, Result_form.h);
+					var digit_frame = Properties.Numbers["dark-" + Correct + ".png"];
+					var digit = {};
+					digit.h = 12  * Result_form.h / frame.h;
+					digit.w = digit.h * digit_frame.w / digit_frame.h;
+					drawDigit(Correct, Result_form.x + 110 * Result_form.w / frame.w, Result_form.y + 51 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "dark");
+					fillRect(0, Result_form.y + 51  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 39  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 68  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 56  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 86  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 74  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 103  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 91  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 120  * Result_form.h / frame.h, 1000, 1);
+					fillRect(0, Result_form.y + 108  * Result_form.h / frame.h, 1000, 1);
+					console.log("Max", Max);
+					drawDigit(Total, Result_form.x + 110 * Result_form.w / frame.w, Result_form.y + 68 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "dark");
+					var points = countPoints(Answers, Total, Max);
+					var stars = Math.round(points / (Max * Total) * 5);
+					console.log("stars", points / (Max * Total), stars);
+					points = points +"";
+					for(var j = 0; j < points.length; j++)
+						drawDigit(points[j], Result_form.x + 110 * Result_form.w / frame.w + j * digit.w, Result_form.y + 86 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "dark");
+					var star_frame = Properties.Buttons["star.png"];
+					var star = {}
+					star.h = digit.h;
+					star.w = star.h * star_frame.w / star_frame.h;
+					for(var j = 0; j < stars; j++)
+						drawStar(Result_form.x + 110 * Result_form.w / frame.w + j * star.w, Result_form.y + 103 * Result_form.h / frame.h - star.h, star.w, star.h, "dark");
+					for(var j = 0; j < 5 - stars; j++)
+						drawDarkStar(Result_form.x + 110 * Result_form.w / frame.w + (stars + j) * star.w, Result_form.y + 103 * Result_form.h / frame.h - star.h, star.w, star.h, "dark");
+					var minuts = Math.round((Task.Result.Finish.getTime() - Task.Result.Start.getTime()) / 1000 / 60);
+					var seconds = Math.round(Task.Result.Finish.getTime() - Task.Result.Start.getTime()) / 1000 - minuts * 60;
+					console.log(Task.Result.Finish.getTime(), Task.Result.Start.getTime(),Task.Result.Finish.getTime() - Task.Result.Start.getTime(), minuts, seconds);
+				
+					
+					
+					//show when okay or try again pressed
+					Task.Result = {};
+				}
+				else {
+					console.log("waiting for result form");
+					setTimeout(function(){
+						showResultForm(Answers, Total, Max);
+					}, 100);
 				}
 		}
 		function showSignInForm(){
@@ -2108,48 +2084,32 @@
 		}
 		function drawPlayerButtons() {
 			//buttons
-					pX = (Screen.width /  Math.min(Screen.k_width, Screen.k_height) - 1366 / 768 * (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40)) / 2 + 1066 / 768 * (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height)- 40)
-					pY = MenuItem.starts + 20 + (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 1/5
-					//size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) / 2  - 40 - 10 * 4) / 5
-					size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5
-					if(!play_btn_ch)
-						drawPlayButton(pX + 20, pY, size_btn, size_btn)
-					else
-						drawPlayButton(pX + 20- 3, pY - 3, size_btn + 6, size_btn + 6)
-					if(!pause_btn_ch)
-						drawPauseButton(pX + 20, pY + size_btn + 10, size_btn, size_btn)
-					else
-						drawPauseButton(pX + 20 - 3, pY + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
-					if(!stop_btn_ch)
-						drawStopButton(pX + 20, pY + size_btn + 10 + size_btn + 10, size_btn, size_btn)
-					else
-						drawStopButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
-					if(!restart_btn_ch)
-						drawRestartButton(pX + 20, pY + size_btn + 10 + size_btn + 10 + size_btn + 10, size_btn, size_btn)
-					else
-						drawRestartButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
-					if(!exit_btn_ch)
-						drawExitButton(pX + 20, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn + 10, size_btn, size_btn)
-					else
-						drawExitButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
-					//console.log(0.8 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - (pY + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn), pY - MenuItem.starts)
-					delete size_btn
+			pX = (Screen.width /  Math.min(Screen.k_width, Screen.k_height) - 1366 / 768 * (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40)) / 2 + 1066 / 768 * (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height)- 40)
+			pY = MenuItem.starts + 20 + (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 1/5
+			//size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) / 2  - 40 - 10 * 4) / 5
+			size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5
+			if(!play_btn_ch)
+				drawPlayButton(pX + 20, pY, size_btn, size_btn)
+			else
+				drawPlayButton(pX + 20- 3, pY - 3, size_btn + 6, size_btn + 6)
+			if(!pause_btn_ch)
+				drawPauseButton(pX + 20, pY + size_btn + 10, size_btn, size_btn)
+			else
+				drawPauseButton(pX + 20 - 3, pY + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
+			if(!stop_btn_ch)
+				drawStopButton(pX + 20, pY + size_btn + 10 + size_btn + 10, size_btn, size_btn)
+			else
+				drawStopButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
+			if(!restart_btn_ch)
+				drawRestartButton(pX + 20, pY + size_btn + 10 + size_btn + 10 + size_btn + 10, size_btn, size_btn)
+			else
+				drawRestartButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
+			if(!exit_btn_ch)
+				drawExitButton(pX + 20, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn + 10, size_btn, size_btn)
+			else
+				drawExitButton(pX + 20 - 3, pY + size_btn + 10 + size_btn + 10 + size_btn + 10 + size_btn + 10 - 3, size_btn + 6, size_btn + 6)
+			delete size_btn
 		}
-		/*function drawVideoFrame() {
-			if(video.currentTime == 0) {
-				video = document.getElementById('video')
-				pX = (Screen.width /  Math.min(Screen.k_width, Screen.k_height) - 1366 / 768 * (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40)) / 2
-				//ctx.fillRect(pX * Math.min(Screen.k_width, Screen.k_height), (MenuItem.starts + 20)*Math.min(Screen.k_width, Screen.k_height), 1366 / 768 * (0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height)), 0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height));
-				//ctx.drawImage(video, pX * Math.min(Screen.k_width, Screen.k_height), (MenuItem.starts + 20)*Math.min(Screen.k_width, Screen.k_height), 1366 / 768 * (0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height)), 0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height));
-				//ctx.drawImage(video, pX * Math.min(Screen.k_width, Screen.k_height), (MenuItem.starts + 20)*Math.min(Screen.k_width, Screen.k_height), 1366 / 768 * (0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height)), 0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height));
-				//ctx.fillRect(video, pX * Math.min(Screen.k_width, Screen.k_height), (MenuItem.starts + 20)*Math.min(Screen.k_width, Screen.k_height), 1366 / 768 * (0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height)), 0.6 * Screen.height - 40 * Math.min(Screen.k_width, Screen.k_height));
-			}
-			else {
-				setTimeout(function(){
-					drawVideoFrame();
-				}, 1);
-			}
-		}*/
 		function setWordHeight(){
 			var animal_height = 400;
 			var word_height = (0.8 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40 * 3 - animal_height - 2 * 30) / 3;
@@ -2168,6 +2128,7 @@
 			return word_height;
 		}
 		function drawTestAnimals() {
+			console.log("drawtestanimals");
 			ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
 			var animal_height = 400;
 			var edge = 0;
@@ -2576,23 +2537,26 @@
 					//Mode.MatchTheAnimalsWithTheirNames = false;
 					Task.Result.Finish = new Date;
 					delete Task.Result.time;
-					console.log("Test is finished", "Task.Result", Task.Result);
-					socket.emit("Result", {Result: Task.Result});
-					Task.Result = {};
+					Mode.MatchTheAnimalsWithTheirNames = false;
+					loadForms();
+					showResultForm(Task.Result.Answers, 6, 4);
+					console.log("Test is finished", "Task.Result", Task.Result.Answers.length);
+					
 				}
 			}
-			function setTest(){
+			function setTest(N){
+				console.log("N = ", N);
 				try{
 					console.log(Animals);
 				}
 				catch(e) {
 					console.log("waiting for Animals data");
 					setTimeout(function(){
-						setTest();
+						setTest(N);
 					}, 50);
 				}
 				console.log("drawAnimals");
-				Task.test = getRandomArray(Animals, [], 6);
+				Task.test = getRandomArray(Animals, [], N);
 				console.log("test", Task.test);
 				Task.toTest = Task.test.slice(0);
 				console.log("Task.toTest", Task.toTest);
@@ -2612,27 +2576,24 @@
 					return false;
 				}
 			}
-			function checkloadedAnimals() {
+			function checkloadedAnimals(N) {
 				if(Task.loadedAnimalsWords && Task.loadedAnimals) {
 						console.log("animals are loaded");
-						setTest();
+						setTest(N);
 				}
 				else {setTimeout(function(){
 						console.log("animals are not loaded yet");
 						console.log("waiting to load");
-						checkloadedAnimals();
+						checkloadedAnimals(N);
 					}, 200)
 				}
 			}
 			function showTask(TaskName) {
 				console.log(TaskName);
-				console.log("Mode.Exercise", Mode.Exercise);
-				console.log("Profile.LoggedIn", Profile.LoggedIn);
 				if(Profile.LoggedIn) {
 					Task.Result.UserName = Profile.UserName;
 					Task.Result.Exercise = TaskName;
 				};
-				drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
 				switch(TaskName) {
 					case 'Alphabet song':
 						Mode.AlphabetSong = true;
@@ -2663,10 +2624,10 @@
 						})
 						if(Task.loadedAnimalsWords && Task.loadedAnimals) {
 							console.log("animals are loaded");
-							setTest();
+							setTest(2);
 						}
 						else {
-							checkloadedAnimals();							
+							checkloadedAnimals(2);							
 						}
 						try{
 							size_btn = setWordHeight();
@@ -2674,6 +2635,8 @@
 						catch(e) {
 							size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5
 						}
+						drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+				
 						break;
 					
 				}
@@ -2704,9 +2667,6 @@
 				console.log("stop button has been clicked")
 				console.log(video.currentTime);
 				video.load();
-				console.log(video.currentTime);
-							
-				//0 кадр
 			}
 			
 			//restart button has been clicked
@@ -2820,41 +2780,21 @@
 					}
 					else edge = center;
 				}
-				if(k3 != -1) {
+				if(Mode.MatchTheAnimalsWithTheirNames &&k3 != -1) {
 					drawHeader();
 					ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
-					//size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5;
-					//drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - 20 - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
-					//fillRect((Screen.width /Math.min(Screen.k_width, Screen.k_height) - Task.asked.frame.w*animal_height/Task.asked.frame.h) / 2, Screen.height * 0.2/ Math.min(Screen.k_width, Screen.k_height) + (20 + 20), Task.asked.frame.w*animal_height/Task.asked.frame.h, animal_height)
-					/*ctx.fillRect(mouseX, mouseY, 10, 10);
-					var Word = {};
-					Word.x = (Array[k2].x + mouseX/Math.min(Screen.k_width, Screen.k_height) - Pressed.x/Math.min(Screen.k_width, Screen.k_height))/ Math.min(Screen.k_width, Screen.k_height);
-					Word.y = (Array[k2].y + mouseY/Math.min(Screen.k_width, Screen.k_height) - Pressed.y/Math.min(Screen.k_width, Screen.k_height))/ Math.min(Screen.k_width, Screen.k_height);
-					console.log("Word", Word, word_height);
-					var Rect = {x:(Screen.width/Math.min(Screen.k_width, Screen.k_height) - Task.asked.frame.w*animal_height/Task.asked.frame.h)/2, y: 0.2*Screen.height / Math.min(Screen.k_width, Screen.k_height)  + 40, w: Task.asked.frame.w*animal_height/Task.asked.frame.h, h: animal_height};
-					fillRect(Word.x, Word.y, 100, word_height);
-					fillRect(Rect.x, Rect.y, Rect.w, Rect.h);
-					fillRect((Screen.width/Math.min(Screen.k_width, Screen.k_height) - Task.asked.frame.w*animal_height/Task.asked.frame.h) / 2, Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height)+ 40, Task.asked.frame.w*animal_height/Task.asked.frame.h, animal_height);
-					*/
+					
 					if(mouseInRect((Screen.width / Math.min(Screen.k_width, Screen.k_height) - Task.asked.frame.w*animal_height/Task.asked.frame.h) / 2, Screen.height * 0.2/ Math.min(Screen.k_width, Screen.k_height) + (20 + 20), Task.asked.frame.w*animal_height/Task.asked.frame.h, animal_height)) {
-					//if(PointInRect(Word, Rect) || PointInRect({x:Word.x + Word.w,y: Word.y}, Rect)) {
 						Task.tries--;
 						console.log("checking the answer");
 						var correct = checkAnswer(k3);
 						if(correct){
-							responsiveVoice.speak(Task.test[k3].Word, Profile.Accent);
+							speak(Task.test[k3].Word);
 							console.log("correct answer");
 							var frame = Properties.Buttons["correct.png"];
 							var word_height = setWordHeight();
 							var word_width = word_height * frame.w / frame.h;
-							/*
-								var animal_height = 400;
-								var edge = 0;
-								var center = Screen.width / Math.min(Screen.k_width, Screen.k_height) / 2;
-								var top = Screen.height * 0.2 / Math.min(Screen.k_width, Screen.k_height) + 40 + animal_height + 40;
-								var word_height = setWordHeight();
-								
-							*/
+							
 							drawCorrect((Screen.width / Math.min(Screen.k_width, Screen.k_height) - word_width) / 2, 0.2*Screen.height / Math.min(Screen.k_width, Screen.k_height) - word_height - 20, word_width, word_height);
 								
 							Task.toTest.splice(Task.toTest.indexOf((Task.test.concat())[k3]), 1);
@@ -2885,11 +2825,13 @@
 							console.log("answer", k3);
 							k3 = -1;
 							if(Task.tries) {
+								console.log("is it here");
+			
 								drawTestAnimals();
 							}
 							else {
 								console.log("not asking again", Task.toTest.splice(Task.toTest.indexOf(Task.asked), 1)[0]);
-								responsiveVoice.speak(Task.asked.Word, Profile.Accent);
+								speak(Task.asked.Word);
 								Task.Result.time = Date.now();
 								setTimeout(function(){
 									selectAnimal();
@@ -2908,10 +2850,11 @@
 				}
 				var i = checkPoint({x:mouseX, y:mouseY}, Array);
 				if(i < Array.length) {
-					responsiveVoice.speak(Task.test[i].Word, Profile.Accent);
+					speak(Task.test[i].Word);
 				}
-				else {
+				else if(Mode.MatchTheAnimalsWithTheirNames){
 					k3 = -1;
+					console.log("or here");
 					drawTestAnimals();	
 					
 				}				
@@ -2970,9 +2913,10 @@
 			Properties.Tasks = data.tasks;
 			Properties.Buttons = data.buttons;
 			Properties.Forms = data.forms;
+			Properties.Numbers = data.numbers;
+			console.log(Properties.Numbers);
 			if(Properties.Tasks.length && Properties.Topics.length) {
 				console.log("respondCanvas");
-				//console.log("Properties", Properties);
 				respondCanvas();
 				MenuItem.ItemList = [];
 				for (i = 0; i < MenuItem.itemsCount; i++) {
@@ -2988,7 +2932,6 @@
 						Task.itemsCount[q] = 0;
 					}
 				}
-				//console.log("MenuItem.ItemList", MenuItem.ItemList);
 			}
 		})
 	}

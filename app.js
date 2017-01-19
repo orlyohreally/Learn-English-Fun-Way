@@ -7,11 +7,12 @@ var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', '
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
-
+var favicon = require('serve-favicon');
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/client/index.html');
 });
 app.use('/client', express.static(__dirname + '/client'));
+app.use(favicon(__dirname + '/client/img/favicon.ico'));
 serv.listen(2000);
 console.log("Server started");
 SOCKET_LIST = {};
@@ -140,6 +141,21 @@ io.sockets.on('connection', function(socket) {
 			}
 		})
 	}
+	function getNumbers() {
+		db.SpreadSheets.find({"Name": "Numbers"}, function(err, res){
+			res = res[0].Frames;
+			Properties.Numbers = {};
+			for(i = 0; i < res.length; i++){
+				delete res[i].rotated;
+				delete res[i].trimmed;
+				delete res[i].spriteSourceSize;
+				delete res[i].sourceSize;
+				delete res[i].pivot;
+				Properties.Numbers[res[i].filename] = res[i].frame;
+				//console.log(Properties.Numbers[res[i].filename]);
+			}
+		})
+	}
 	function getTaskFrames() {
 		db.Exercise.find({}, function(err, res){
 		Properties.Tasks = [];
@@ -163,13 +179,15 @@ io.sockets.on('connection', function(socket) {
 		}
 		getButtons();
 		getForms();
+		getNumbers();
 		//console.log(Properties.Topics, Properties.Tasks);
 		console.log("sending");
 		socket.emit('getProperties', {
 				topics:Properties.Topics,
 				tasks:Properties.Tasks,
 				buttons:Properties.Buttons,
-				forms:Properties.Forms
+				forms:Properties.Forms,
+				numbers:Properties.Numbers
 			});	
 		})	
 	}
@@ -259,6 +277,7 @@ io.sockets.on('connection', function(socket) {
 		})
 	})						
 	socket.on('Result', function(data){
+		console.log("result", data.Result);
 		db.Results.insert(data.Result, function(err, res){});
 	})
 })
