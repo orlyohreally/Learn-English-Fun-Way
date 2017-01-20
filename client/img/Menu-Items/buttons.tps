@@ -194,16 +194,19 @@
             <key type="filename">help_btn.png</key>
             <key type="filename">info_btn.png</key>
             <key type="filename">left-arrow.png</key>
-            <key type="filename">login_btn1.png</key>
+            <key type="filename">login_btn.png</key>
             <key type="filename">pause_btn.png</key>
             <key type="filename">phrase_of_the_day_btn.png</key>
             <key type="filename">play_btn.png</key>
-            <key type="filename">profile_boy.png</key>
-            <key type="filename">profile_girl.png</key>
-            <key type="filename">quiz.png</key>
+            <key type="filename">profile_boy1.png</key>
+            <key type="filename">profile_boy2.png</key>
+            <key type="filename">profile_girl1.png</key>
+            <key type="filename">profile_girl2.png</key>
+            <key type="filename">quiz_btn.png</key>
             <key type="filename">restart_btn.png</key>
             <key type="filename">right-arrow.png</key>
             <key type="filename">sign_up_btn.png</key>
+            <key type="filename">skip.png</key>
             <key type="filename">sound_off.png</key>
             <key type="filename">sound_on.png</key>
             <key type="filename">stop_btn.png</key>
@@ -230,7 +233,6 @@
             <filename>../Reward/progress_btn.png</filename>
             <filename>title1.png</filename>
             <filename>phrase_of_the_day_btn.png</filename>
-            <filename>quiz.png</filename>
             <filename>info_btn.png</filename>
             <filename>../Reward/star.png</filename>
             <filename>exit_btn.png</filename>
@@ -238,9 +240,6 @@
             <filename>stop_btn.png</filename>
             <filename>play_btn.png</filename>
             <filename>restart_btn.png</filename>
-            <filename>profile_girl.png</filename>
-            <filename>profile_boy.png</filename>
-            <filename>login_btn1.png</filename>
             <filename>left-arrow.png</filename>
             <filename>help_btn.png</filename>
             <filename>../Reward/rewards_btn1.png</filename>
@@ -257,6 +256,13 @@
             <filename>touch-and-hold.png</filename>
             <filename>drag-flick.png</filename>
             <filename>flick-up.png</filename>
+            <filename>login_btn.png</filename>
+            <filename>quiz_btn.png</filename>
+            <filename>profile_girl2.png</filename>
+            <filename>profile_girl1.png</filename>
+            <filename>profile_boy1.png</filename>
+            <filename>profile_boy2.png</filename>
+            <filename>skip.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

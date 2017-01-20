@@ -19,7 +19,11 @@ SOCKET_LIST = {};
 var io = require('socket.io')(serv, {});
 var Properties = {};
 Properties.Topics = [];
-
+Properties.Numbers = {};
+Properties.Letters = {};
+Properties.Forms = {};
+Properties.Buttons = {};
+			
 
 io.sockets.on('connection', function(socket) {
 	/*socket.id = Math.random;
@@ -113,7 +117,6 @@ io.sockets.on('connection', function(socket) {
 	function getButtons() {
 		db.SpreadSheets.find({"Name": "Buttons"}, function(err, res){
 			res = res[0].Frames;
-			Properties.Buttons = {};
 			for(i = 0; i < res.length; i++){
 				delete res[i].rotated;
 				delete res[i].trimmed;
@@ -129,7 +132,6 @@ io.sockets.on('connection', function(socket) {
 	function getForms() {
 		db.SpreadSheets.find({"Name": "Forms"}, function(err, res){
 			res = res[0].Frames;
-			Properties.Forms = {};
 			for(i = 0; i < res.length; i++){
 				delete res[i].rotated;
 				delete res[i].trimmed;
@@ -144,7 +146,6 @@ io.sockets.on('connection', function(socket) {
 	function getNumbers() {
 		db.SpreadSheets.find({"Name": "Numbers"}, function(err, res){
 			res = res[0].Frames;
-			Properties.Numbers = {};
 			for(i = 0; i < res.length; i++){
 				delete res[i].rotated;
 				delete res[i].trimmed;
@@ -156,39 +157,55 @@ io.sockets.on('connection', function(socket) {
 			}
 		})
 	}
+	function getLetters() {
+		db.SpreadSheets.find({"Name": "Letters"}, function(err, res){
+			res = res[0].Frames;
+			for(i = 0; i < res.length; i++){
+				delete res[i].rotated;
+				delete res[i].trimmed;
+				delete res[i].spriteSourceSize;
+				delete res[i].sourceSize;
+				delete res[i].pivot;
+				Properties.Letters[res[i].filename] = res[i].frame;
+			}
+		})
+	}
+	getButtons();
+	getForms();
+	getNumbers();
+	getLetters();
+		
 	function getTaskFrames() {
 		db.Exercise.find({}, function(err, res){
-		Properties.Tasks = [];
-		//console.log("res", res);
-		for(i = 0; i< Properties.Topics.length;i++){
-			Properties.Tasks[Properties.Topics[i].T_index - 1] = [];
-		}
-		for(i=0;i<res.length;i++){
-			var item = res[i];
-			var j = 0;
-			while(j < Properties.Topics.length) {
-				if(Properties.Topics[j].Name == item.Topic_Name) {
-					Properties.Tasks[j][item.T_index - 1] = item;
-					j = Properties.Topics.length + 1;
-				}
-				else {
-					j++;
-				}	
+			Properties.Tasks = [];
+			//console.log("res", res);
+			for(i = 0; i< Properties.Topics.length;i++){
+				Properties.Tasks[Properties.Topics[i].T_index - 1] = [];
 			}
-			
-		}
-		getButtons();
-		getForms();
-		getNumbers();
-		//console.log(Properties.Topics, Properties.Tasks);
-		console.log("sending");
-		socket.emit('getProperties', {
-				topics:Properties.Topics,
-				tasks:Properties.Tasks,
-				buttons:Properties.Buttons,
-				forms:Properties.Forms,
-				numbers:Properties.Numbers
-			});	
+			for(i=0;i<res.length;i++){
+				var item = res[i];
+				var j = 0;
+				while(j < Properties.Topics.length) {
+					if(Properties.Topics[j].Name == item.Topic_Name) {
+						Properties.Tasks[j][item.T_index - 1] = item;
+						j = Properties.Topics.length + 1;
+					}
+					else {
+						j++;
+					}	
+				}
+				
+			}
+			//console.log(Properties.Topics, Properties.Tasks);
+			console.log("sending");
+			socket.emit('getProperties', {
+					topics:Properties.Topics,
+					tasks:Properties.Tasks,
+					buttons:Properties.Buttons,
+					forms:Properties.Forms,
+					numbers:Properties.Numbers,
+					letters:Properties.Letters
+				});	
 		})	
 	}
 	socket.on('newUser', function(data){

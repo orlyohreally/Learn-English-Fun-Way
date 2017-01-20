@@ -208,6 +208,16 @@
             <key type="filename">dark-7.png</key>
             <key type="filename">dark-8.png</key>
             <key type="filename">dark-9.png</key>
+            <key type="filename">small-dark-0.png</key>
+            <key type="filename">small-dark-1.png</key>
+            <key type="filename">small-dark-2.png</key>
+            <key type="filename">small-dark-3.png</key>
+            <key type="filename">small-dark-4.png</key>
+            <key type="filename">small-dark-5.png</key>
+            <key type="filename">small-dark-6.png</key>
+            <key type="filename">small-dark-7.png</key>
+            <key type="filename">small-dark-8.png</key>
+            <key type="filename">small-dark-9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -235,6 +245,16 @@
             <filename>dark-7.png</filename>
             <filename>dark-8.png</filename>
             <filename>dark-9.png</filename>
+            <filename>small-dark-0.png</filename>
+            <filename>small-dark-1.png</filename>
+            <filename>small-dark-2.png</filename>
+            <filename>small-dark-3.png</filename>
+            <filename>small-dark-4.png</filename>
+            <filename>small-dark-5.png</filename>
+            <filename>small-dark-6.png</filename>
+            <filename>small-dark-7.png</filename>
+            <filename>small-dark-8.png</filename>
+            <filename>small-dark-9.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

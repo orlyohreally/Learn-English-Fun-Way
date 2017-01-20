@@ -1,0 +1,138 @@
+{"frames": [
+
+{
+	"filename": "bee.png",
+	"frame": {"x":648,"y":0,"w":463,"h":547},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":463,"h":547},
+	"sourceSize": {"w":463,"h":547},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "bird.png",
+	"frame": {"x":2774,"y":648,"w":636,"h":781},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":636,"h":781},
+	"sourceSize": {"w":636,"h":781},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "butterfly.png",
+	"frame": {"x":1903,"y":0,"w":679,"h":623},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":679,"h":623},
+	"sourceSize": {"w":679,"h":623},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "cat.png",
+	"frame": {"x":900,"y":1429,"w":566,"h":817},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":566,"h":817},
+	"sourceSize": {"w":566,"h":817},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chicken.png",
+	"frame": {"x":1466,"y":1429,"w":555,"h":841},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":555,"h":841},
+	"sourceSize": {"w":555,"h":841},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "dog.png",
+	"frame": {"x":0,"y":648,"w":811,"h":664},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":811,"h":664},
+	"sourceSize": {"w":811,"h":664},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "donkey.png",
+	"frame": {"x":2862,"y":1429,"w":1159,"h":1047},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1159,"h":1047},
+	"sourceSize": {"w":1159,"h":1047},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "fish.png",
+	"frame": {"x":0,"y":0,"w":648,"h":423},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":648,"h":423},
+	"sourceSize": {"w":648,"h":423},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "mouse.png",
+	"frame": {"x":811,"y":648,"w":864,"h":730},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":864,"h":730},
+	"sourceSize": {"w":864,"h":730},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "parrot.png",
+	"frame": {"x":2021,"y":1429,"w":841,"h":924},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":841,"h":924},
+	"sourceSize": {"w":841,"h":924},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "pig.png",
+	"frame": {"x":1675,"y":648,"w":1099,"h":774},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1099,"h":774},
+	"sourceSize": {"w":1099,"h":774},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ship.png",
+	"frame": {"x":0,"y":1429,"w":900,"h":804},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":900,"h":804},
+	"sourceSize": {"w":900,"h":804},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "squirrel.png",
+	"frame": {"x":1111,"y":0,"w":792,"h":621},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":792,"h":621},
+	"sourceSize": {"w":792,"h":621},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "turtle.png",
+	"frame": {"x":2582,"y":0,"w":1070,"h":648},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1070,"h":648},
+	"sourceSize": {"w":1070,"h":648},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "animals.png",
+	"format": "RGBA8888",
+	"size": {"w":4021,"h":2476},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:73fe17a139a15c5e9d4e69c87a80b7ff:35ecd65ff7d5d65f7ab0393e0f4f72f5:b00d48b51f56eb7c81e25100fcce2828$"
+}
+}

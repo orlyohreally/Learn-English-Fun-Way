@@ -214,6 +214,13 @@
             <key type="filename">e.png</key>
             <key type="filename">f.png</key>
             <key type="filename">g.png</key>
+            <key type="filename">small-dark-c.png</key>
+            <key type="filename">small-dark-e.png</key>
+            <key type="filename">small-dark-i.png</key>
+            <key type="filename">small-dark-m.png</key>
+            <key type="filename">small-dark-n.png</key>
+            <key type="filename">small-dark-period.png</key>
+            <key type="filename">small-dark-s.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -247,6 +254,13 @@
             <filename>T.png</filename>
             <filename>U.png</filename>
             <filename>V.png</filename>
+            <filename>small-dark-c.png</filename>
+            <filename>small-dark-e.png</filename>
+            <filename>small-dark-i.png</filename>
+            <filename>small-dark-m.png</filename>
+            <filename>small-dark-n.png</filename>
+            <filename>small-dark-period.png</filename>
+            <filename>small-dark-s.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
