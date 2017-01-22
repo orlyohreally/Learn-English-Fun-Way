@@ -1,6 +1,7 @@
 var mongojs = require("mongojs");
 var bcrypt = require("bcryptjs"), SALT_WORK_FACTOR = 10;
-var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+var db = mongojs('mongodb://orlyohreally:92Prod92Prod@ds117189.mlab.com:17189/heroku_r3fhp6xc/', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+//var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
 //db.Topics.find({"Name":"Animals"}, function(err, res){console.log(res[0])})
 
 //db.SpreadSheets.aggregate( [ { $match:  { "Name": "menu_items"}}, {$lookup: {    from: "db.Topics",     localField: "Content.filename",    foreignField: "Name",    as: "Properties"}  }])
