@@ -2,7 +2,7 @@
   "name": "lefw",
   "version": "1.0.0",
   "description": "",
-  "main": "app-script.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/orlyohreally/LearnEnglishFunWay.git"
   },
-  "author": "",
+  "author": "Orly Knop",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/orlyohreally/LearnEnglishFunWay/issues"

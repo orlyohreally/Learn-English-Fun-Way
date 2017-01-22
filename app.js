@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/client/index.html');
 });
 app.use('/client', express.static(__dirname + '/client'));
-app.use(favicon(__dirname + '/client/img/favicon.ico'));
+app.use(favicon(__dirname + 'favicon.ico'));
 serv.listen(2000);
 console.log("Server started");
 SOCKET_LIST = {};
