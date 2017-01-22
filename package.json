@@ -8,9 +8,8 @@
   },
   "author": "Orly Knop",
   "dependencies": {
-    "express": "4.14.0",
-    "screenfull": "3.0.2",
-	"socket.io" : "*"
+    "express": "^4.14.0",
+	"socket.io" : "1.5.1"
   },
   "engines":{
 	"node": "4.6.0"
