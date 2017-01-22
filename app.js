@@ -7,12 +7,12 @@ var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', '
 var express = require('express');
 var app = express();
 var serv = require('http').Server(app);
-var favicon = require('serve-favicon');
+//var favicon = require('serve-favicon');
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/client/index.html');
 });
 app.use('/client', express.static(__dirname + '/client'));
-app.use(favicon(__dirname + 'favicon.ico'));
+//app.use(favicon(__dirname + 'favicon.ico'));
 serv.listen(2000);
 console.log("Server started");
 SOCKET_LIST = {};
