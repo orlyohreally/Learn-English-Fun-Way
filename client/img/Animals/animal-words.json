@@ -2,7 +2,7 @@
 
 {
 	"filename": "bee-word.png",
-	"frame": {"x":0,"y":0,"w":237,"h":56},
+	"frame": {"x":227,"y":0,"w":237,"h":56},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":237,"h":56},
@@ -11,7 +11,7 @@
 },
 {
 	"filename": "bird-word.png",
-	"frame": {"x":237,"y":0,"w":285,"h":56},
+	"frame": {"x":696,"y":0,"w":285,"h":56},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":285,"h":56},
@@ -20,7 +20,7 @@
 },
 {
 	"filename": "butterfly-word.png",
-	"frame": {"x":0,"y":56,"w":657,"h":68},
+	"frame": {"x":0,"y":261,"w":657,"h":68},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":657,"h":68},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "cat-word.png",
-	"frame": {"x":657,"y":56,"w":227,"h":56},
+	"frame": {"x":0,"y":0,"w":227,"h":56},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":227,"h":56},
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "chicken-word.png",
-	"frame": {"x":0,"y":124,"w":508,"h":57},
+	"frame": {"x":386,"y":124,"w":508,"h":57},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":508,"h":57},
@@ -47,7 +47,7 @@
 },
 {
 	"filename": "dog-word.png",
-	"frame": {"x":508,"y":124,"w":232,"h":68},
+	"frame": {"x":464,"y":0,"w":232,"h":68},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":232,"h":68},
@@ -65,7 +65,7 @@
 },
 {
 	"filename": "fish-word.png",
-	"frame": {"x":464,"y":192,"w":289,"h":56},
+	"frame": {"x":0,"y":68,"w":289,"h":56},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":289,"h":56},
@@ -73,17 +73,17 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ship-word.png",
-	"frame": {"x":0,"y":260,"w":288,"h":68},
+	"filename": "sheep-word.png",
+	"frame": {"x":0,"y":124,"w":386,"h":68},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":288,"h":68},
-	"sourceSize": {"w":288,"h":68},
+	"spriteSourceSize": {"x":0,"y":0,"w":386,"h":68},
+	"sourceSize": {"w":386,"h":68},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
 	"filename": "squirrel-word.png",
-	"frame": {"x":288,"y":260,"w":558,"h":69},
+	"frame": {"x":464,"y":192,"w":558,"h":69},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":558,"h":69},
@@ -92,7 +92,7 @@
 },
 {
 	"filename": "turtle-word.png",
-	"frame": {"x":0,"y":329,"w":432,"h":55},
+	"frame": {"x":289,"y":68,"w":432,"h":55},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":432,"h":55},
@@ -104,8 +104,8 @@
 	"version": "1.0",
 	"image": "animal-words.png",
 	"format": "RGBA8888",
-	"size": {"w":884,"h":384},
+	"size": {"w":1022,"h":329},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:02528cd2c098aecedab3322e472033d4:58a197a449fc91fbb2dbbdab9d139e6d:ef14304fbe19d098c5c66f3de1754a0e$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b17654b54748a1f2df3c60a26300d542:cf0266a4eccd06fca2ab43028582b94d:ef14304fbe19d098c5c66f3de1754a0e$"
 }
 }

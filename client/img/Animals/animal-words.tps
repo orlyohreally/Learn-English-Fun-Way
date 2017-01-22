@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.2.2</string>
         <key>fileName</key>
-        <string>C:/Users/Orly/Desktop/Learn English Fun Way/assets/Animals/animal-words.tps</string>
+        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Animals/animal-words.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -196,7 +196,7 @@
             <key type="filename">dog-word.png</key>
             <key type="filename">donkey-word.png</key>
             <key type="filename">fish-word.png</key>
-            <key type="filename">ship-word.png</key>
+            <key type="filename">sheep-word.png</key>
             <key type="filename">squirrel-word.png</key>
             <key type="filename">turtle-word.png</key>
             <struct type="IndividualSpriteSettings">
@@ -216,7 +216,7 @@
             <filename>cat-word.png</filename>
             <filename>chicken-word.png</filename>
             <filename>donkey-word.png</filename>
-            <filename>ship-word.png</filename>
+            <filename>sheep-word.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
