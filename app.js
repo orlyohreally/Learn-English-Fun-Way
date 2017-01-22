@@ -14,7 +14,10 @@ app.get('/', function(req, res) {
 });
 app.use('/client', express.static(__dirname + '/client'));
 app.use(favicon(__dirname + '/favicon.ico'));
-serv.listen(5000);
+//serv.listen(5000);
+app.listen(process.env.PORT || 3000, function() {
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 console.log("Server started");
 SOCKET_LIST = {};
 var io = require('socket.io')(serv, {});
