@@ -1,5 +1,4 @@
 (function(){
-	socket = io.connect('https://learnenglishfunway.herokuapp.com/');
 	$(document).ready(function(){
 	
 		var ctx = document.getElementById("MainCanvas").getContext("2d");

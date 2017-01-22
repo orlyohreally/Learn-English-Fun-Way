@@ -20,7 +20,7 @@ app.listen(process.env.PORT || 3000, function() {
 });
 console.log("Server started");
 SOCKET_LIST = {};
-var io = require('socket.io')(serv, {});
+var io = require('socket.io')(serv);
 var Properties = {};
 Properties.Topics = [];
 Properties.Numbers = {};
