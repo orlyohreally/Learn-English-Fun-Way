@@ -1,6 +1,7 @@
 var mongojs = require("mongojs");
 var bcrypt = require("bcryptjs"), SALT_WORK_FACTOR = 10;
-var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+var db = mongojs('mongodb://orlyohreally:92Prod92Prod@ds117189.mlab.com:17189/heroku_r3fhp6xc', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+//var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
 //db.Topics.find({"Name":"Animals"}, function(err, res){console.log(res[0])})
 
 //db.SpreadSheets.aggregate( [ { $match:  { "Name": "menu_items"}}, {$lookup: {    from: "db.Topics",     localField: "Content.filename",    foreignField: "Name",    as: "Properties"}  }])
@@ -12,11 +13,14 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/client/index.html');
 });
 app.use('/client', express.static(__dirname + '/client'));
-app.use(favicon(__dirname + '/client/img/favicon.ico'));
-serv.listen(2000);
+app.use(favicon(__dirname + '/favicon.ico'));
+//serv.listen(5000);
+app.listen(process.env.PORT || 3000, function() {
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 console.log("Server started");
 SOCKET_LIST = {};
-var io = require('socket.io')(serv, {});
+var io = require('socket.io')(serv);
 var Properties = {};
 Properties.Topics = [];
 Properties.Numbers = {};

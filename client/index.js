@@ -1,5 +1,4 @@
 (function(){
-	socket = io();
 	$(document).ready(function(){
 	
 		var ctx = document.getElementById("MainCanvas").getContext("2d");
