@@ -240,12 +240,20 @@
 				Task.loadedAnimalsframeWordsframe = true;
 			})
 		}
-		var atlasNumbers = new Image();
-		Task.loadedNumbers;
+		atlas.Numbersframe = new Image();
+		Task.loadedNumbersframe;
 		function loadNumbers(){
-			atlasNumbers.src = 'client/img/Numbers/numbers.png';
-			atlasNumbers.addEventListener("load", function() {
-				Task.loadedNumbers = true;
+			atlas.Numbersframe.src = 'client/img/Numbers/numbers.png';
+			atlas.Numbersframe.addEventListener("load", function() {
+				Task.loadedNumbersframe = true;
+			})
+		}
+		atlas.NumbersWordsframe = new Image();
+		Task.loadedNumbersWordsframe;
+		function loadNumbersWords(){
+			atlas.NumbersWordsframe.src = 'client/img/Numbers/number-words.png';
+			atlas.NumbersWordsframe.addEventListener("load", function() {
+				Task.loadedNumbersWordsframe = true;
 			})
 		}
 		var atlasLetters = new Image();
@@ -363,7 +371,7 @@
 			if(type != "")
 				type = type + "-";
 			var frame = Properties.Numbers[type + n + ".png"];
-			ctx.drawImage(atlasNumbers, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
+			ctx.drawImage(atlas.Numbersframe, frame.x, frame.y, frame.w, frame.h, x * Math.min(Screen.k_width, Screen.k_height), y * Math.min(Screen.k_width, Screen.k_height), width * Math.min(Screen.k_width, Screen.k_height), height * Math.min(Screen.k_width, Screen.k_height))
 		}
 		function drawLetter(n, x, y, width, height, type = "") {
 			console.log(type + "-" + n + ".png")
@@ -1368,7 +1376,7 @@
 					console.log("in", k2, "rect");
 					wordFrame = (Task.test.concat())[k2][frametype2];
 					ctx.clearRect((Array[k2]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k2].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].h)*Math.min(Screen.k_width, Screen.k_height));
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k2].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].h + 6)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k2].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k2].h + 6)*Math.min(Screen.k_width, Screen.k_height));
 					word_ch = true;
 				}
 			}
@@ -1435,10 +1443,10 @@
 					wordFrame = Task.test[i][frametype2];
 					
 					ctx.clearRect((Array[i].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 6)*Math.min(Screen.k_width, Screen.k_height));
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 12)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h + 12)*Math.min(Screen.k_width, Screen.k_height));
 					drawTestAnimals();
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i]).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i]).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[i] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[i].y)*Math.min(Screen.k_width, Screen.k_height), (Array[i].w)*Math.min(Screen.k_width, Screen.k_height), (Array[i].h)*Math.min(Screen.k_width, Screen.k_height));
 					if(Mode.Training && Task.test[k2].Word == Task.asked.Word) {
 						var Hand_frame =  Properties.Buttons["tap.png"];
 						var Hand = {};
@@ -1463,11 +1471,11 @@
 					var Rect = {x:0, y:0, w:Screen.width/Math.min(Screen.k_width, Screen.k_height), h:0.2*Screen.height/Math.min(Screen.k_width, Screen.k_height) + 20};
 					
 					ctx.clearRect((Array[k3].x - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y - 3)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w + 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h + 6)*Math.min(Screen.k_width, Screen.k_height));
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h + 12)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y - 6)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w + 12)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h + 12)*Math.min(Screen.k_width, Screen.k_height));
 					ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
 					drawTestAnimals();
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
-					ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
+					ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
 					if(Mode.Training && Task.test[k3].Word == Task.asked.Word) {
 						var Hand_frame =  Properties.Buttons["tap.png"];
 						var Hand = {};
@@ -2580,8 +2588,10 @@
 		}
 		function drawTestAnimals() {
 			console.log("drawtestanimals");
+			console.log("Task.asked", Task.asked);
 			ctx.clearRect(0, 0.2 * Screen.height, Screen.width, Screen.height);
 			var top, center, animal_height;
+			console.log(frametype1, frametype2);
 			if(frametype1 == "frame") {
 				animal_height = Screen.height / Math.min(Screen.k_width, Screen.k_height) / 4;
 			}
@@ -2600,16 +2610,17 @@
 			
 			}
 			var word_height = setWordHeight();
+			console.log(Task.TopicName + frametype1);
 			//ctx.drawImage(atlas.Animalsframe,Task.asked[frametype1].x, Task.asked[frametype1].y, Task.asked[frametype1].w, Task.asked[frametype1].h, (Screen.width - Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height)) / 2, Screen.height * 0.2 + (20 + 20) * Math.min(Screen.k_width, Screen.k_height), Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height), animal_height*Math.min(Screen.k_width, Screen.k_height));
-			ctx.drawImage(atlas["Animals" + frametype1],Task.asked[frametype1].x, Task.asked[frametype1].y, Task.asked[frametype1].w, Task.asked[frametype1].h, (Screen.width - Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height)) / 2, Screen.height * 0.2 + (20 + 20) * Math.min(Screen.k_width, Screen.k_height), Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height), animal_height*Math.min(Screen.k_width, Screen.k_height));
+			ctx.drawImage(atlas[Task.TopicName + frametype1],Task.asked[frametype1].x, Task.asked[frametype1].y, Task.asked[frametype1].w, Task.asked[frametype1].h, (Screen.width - Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height)) / 2, Screen.height * 0.2 + (20 + 20) * Math.min(Screen.k_width, Screen.k_height), Task.asked[frametype1].w*animal_height/Task.asked[frametype1].h*Math.min(Screen.k_width, Screen.k_height), animal_height*Math.min(Screen.k_width, Screen.k_height));
 				
 			for(var i = 0; i < Task.test.length; i++) {
 				var wordFrame = (Task.test.concat())[i][frametype2];
-				//console.log((Task.test.concat())[i]);
+				console.log(wordFrame);
 				if(frametype1 == "frame") {
 					if(k3 != i)
 						//ctx.drawImage(atlas.AnimalsWordsframe, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
-						ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
+						ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
 					
 					if(i % 2){
 						top = top + word_height + 30;
@@ -2620,7 +2631,7 @@
 				else if(frametype1 == "Wordsframe") {
 					if(k3 != i) {
 						//ctx.fillRect((edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
-						ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
+						ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h,(edge + center/2-wordFrame.w*word_height/wordFrame.h/2)*Math.min(Screen.k_width, Screen.k_height), top*Math.min(Screen.k_width, Screen.k_height), wordFrame.w*word_height/wordFrame.h*Math.min(Screen.k_width, Screen.k_height), word_height*Math.min(Screen.k_width, Screen.k_height));
 						
 					}
 					if(!((i + 1) % Math.floor((Task.test.length + 1) / 2))){
@@ -3106,7 +3117,6 @@
 				console.log("test", Task.test, Task.test.length);
 				Task.toTest = Task.test.slice(0);
 				console.log("Task.toTest", Task.toTest);
-				
 				selectAnimal();
 			}
 			function checkAnswer(answer_i) {
@@ -3121,7 +3131,8 @@
 					return false;
 				}
 			}
-			function checkloadedAnimals(TaskName, N) {
+			var checkloaded = {};
+			checkloaded.Animals = function (TaskName, N) {
 				if(Task.loadedAnimalsframeWordsframe && Task.loadedAnimalsframe) {
 						console.log("animals are loaded");
 						try {
@@ -3131,7 +3142,7 @@
 						catch(e) {
 							console.log(TaskName, N);
 							setTimeout(function() {
-								checkloadedAnimals(TaskName, N);
+								checkloaded.Animals(TaskName, N);
 							}, 200);
 							
 						}
@@ -3139,14 +3150,37 @@
 				else {setTimeout(function(){
 						console.log("animals are not loaded yet");
 						console.log("waiting to load");
-						checkloadedAnimals(TaskName, N);
+						checkloaded.Animals(TaskName, N);
 					}, 200)
 				}
 			}
-			function showTask(TaskName) {
+			checkloaded.Numbers = function (TaskName, N) {
+				if(Task.loadedNumbersWordsframe && Task.loadedNumbersframe) {
+						console.log("numbers are loaded");
+						try {
+							console.log(Task.Frames[TaskName].concat());
+							setTest(Task.Frames[TaskName].concat(), N);
+						}
+						catch(e) {
+							console.log(TaskName, N);
+							setTimeout(function() {
+								checkloaded.Numbers(TaskName, N);
+							}, 200);
+							
+						}
+				}
+				else {setTimeout(function(){
+						console.log("animals are not loaded yet");
+						console.log("waiting to load");
+						checkloaded.Numbers(TaskName, N);
+					}, 200)
+				}
+			}
+			function showTask(TaskName, TopicName) {
 				console.log(TaskName);
 				Mode.CountDown = false;
 				Task.TaskName = TaskName;
+				Task.TopicName = TopicName;
 				if(Profile.LoggedIn) {
 					Task.Result.UserName = Profile.UserName;
 					Task.Result.Exercise = TaskName;
@@ -3194,7 +3228,7 @@
 							})
 						}
 						
-						checkloadedAnimals(TaskName, N);
+						checkloaded.Animals(TaskName, N);
 						try{
 							size_btn = setWordHeight();
 							if(frametype1 == "Wordsframe" && frametype2 == "frame")
@@ -3211,8 +3245,8 @@
 						Mode.Training = true;
 						var N = 6;
 						Task.MaxPoint = 4;
-						frametype2 = "frame";
-						frametype1 = "Wordsframe";
+						frametype2 = "Wordsframe";
+						frametype1 = "frame";
 			
 						if(!Task.loadedAnimalsframeWordsframe)
 							loadAnimalsWords();
@@ -3234,7 +3268,46 @@
 							})
 						}
 						
-						checkloadedAnimals(TaskName, N);							
+						checkloaded.Animals(TaskName, N);							
+						try{
+							size_btn = setWordHeight();
+							if(frametype1 == "Wordsframe" && frametype2 == "frame")
+								size_btn = 70;
+						}
+						catch(e) {
+							size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5
+						}
+						drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+						
+						break;
+					case 'Learning numbers from 0 to 10':
+						Mode.Training = true;
+						var N = 6;
+						Task.MaxPoint = 4;
+						frametype2 = "Wordsframe";
+						frametype1 = "frame";
+			
+						if(!Task["loaded" +TopicName + "frameWordsframe"])
+							loadNumbersWords();
+						if(!Task["loaded" +TopicName + "frame"])
+							loadNumbers();
+						try{
+							console.log(Task.Frames[TaskName].length);
+						}
+						catch(e){
+							stop_loading = false;
+							drawLoading();
+							console.log("getting Animals for the first time", TaskName);
+							socket.emit('getTask', {
+								TaskName: TaskName
+							})
+							socket.on('getTask', function(data){
+								Task.Frames[TaskName] = data.Content;
+								console.log("get Task emit", Task.Frames[TaskName]);
+							})
+						}
+						
+						checkloaded.Numbers(TaskName, N);							
 						try{
 							size_btn = setWordHeight();
 							if(frametype1 == "Wordsframe" && frametype2 == "frame")
@@ -3333,7 +3406,7 @@
 						Mode.Tasks = false;
 						Mode.MenuItem = false;
 						//console.log(Properties.Tasks);
-						showTask(Properties.Tasks[j][i].Name);						
+						showTask(Properties.Tasks[j][i].Name, Properties.Tasks[j][i].Topic_Name);						
 						i  = Task.display + 1;
 					}
 					else {
@@ -3420,7 +3493,10 @@
 						//console.log("checking the answer");
 						var correct = checkAnswer(k3);
 						if(correct){
-							speak("a " + Task.test[k3].Word);
+							if(Task.TopicName != "Numbers")
+								speak("a " + Task.test[k3].Word);
+							else
+								speak(Task.test[k3].Word);
 							//console.log("correct answer");
 							var frame = Properties.Buttons["correct.png"];
 							var word_height = setWordHeight();
@@ -3467,7 +3543,10 @@
 							}
 							else {
 								console.log("not asking again", Task.toTest.splice(Task.toTest.indexOf(Task.asked), 1)[0]);
-								speak("a " + Task.asked.Word);
+								if(Task.TopicName != "Numbers")
+									speak("a " + Task.asked.Word);
+								else
+									speak(Task.asked.Word);
 								Task.Result.time = Date.now();
 								setTimeout(function(){
 									selectAnimal();
@@ -3488,7 +3567,10 @@
 				}
 				var i = checkPoint({x:mouseX, y:mouseY}, Array);
 				if(i < Array.length) {
-					speak("a " + Task.test[i].Word);
+					if(Task.TopicName != "Numbers")
+						speak("a " + Task.test[i].Word);
+					else
+						speak(Task.test[i].Word);
 				}
 				else if(Mode.Exercise){
 					k3 = -1;
@@ -3517,7 +3599,7 @@
 					Task.Result = {};
 					Mode[Task.TaskName.replace(/\s/g,'')] = true;
 					Mode.Results = false;
-					showTask(Task.TaskName);
+					showTask(Task.TaskName, Task.TopicName);
 					Task.Result = {};
 				}
 				
@@ -3681,8 +3763,8 @@
 						edge = edgeforTap;
 						var wordFrame = (Task.test.concat())[k3][frametype2];
 						//ctx.drawImage(atlas.AnimalsWordsframe, wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
-						ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
-						ctx.drawImage(atlas["Animals" + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
+						ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3]).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
+						ctx.drawImage(atlas[Task.TopicName + frametype2], wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h, (Array[k3] - 6).x*Math.min(Screen.k_width, Screen.k_height), (Array[k3].y)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].w)*Math.min(Screen.k_width, Screen.k_height), (Array[k3].h)*Math.min(Screen.k_width, Screen.k_height));
 						console.log(wordFrame.x, wordFrame.y, wordFrame.w, wordFrame.h);
 						var Hand_frame =  Properties.Buttons["tap.png"];
 						var Hand = {};

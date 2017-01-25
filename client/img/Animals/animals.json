@@ -37,15 +37,6 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "chicken.png",
-	"frame": {"x":1466,"y":1395,"w":555,"h":820},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":555,"h":820},
-	"sourceSize": {"w":555,"h":820},
-	"pivot": {"x":0.5,"y":0.5}
-},
-{
 	"filename": "dog.png",
 	"frame": {"x":0,"y":621,"w":811,"h":664},
 	"rotated": false,
@@ -70,6 +61,15 @@
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":648,"h":423},
 	"sourceSize": {"w":648,"h":423},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "hen.png",
+	"frame": {"x":1466,"y":1395,"w":555,"h":820},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":555,"h":820},
+	"sourceSize": {"w":555,"h":820},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
@@ -100,7 +100,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ship.png",
+	"filename": "sheep.png",
 	"frame": {"x":0,"y":1395,"w":900,"h":804},
 	"rotated": false,
 	"trimmed": false,
@@ -133,6 +133,6 @@
 	"format": "RGBA8888",
 	"size": {"w":3896,"h":2413},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:2e4d65a058ca38d288af560b0b551398:8a2c5afd0b47c51b0b2aa373c10cb618:b00d48b51f56eb7c81e25100fcce2828$"
+	"smartupdate": "$TexturePacker:SmartUpdate:46add597df9ea7204a0d71c08e57b9e2:e027073c6132ca86c72031ae1fe5b18f:b00d48b51f56eb7c81e25100fcce2828$"
 }
 }

@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.2.2</string>
         <key>fileName</key>
-        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Animals/animal-words.tps</string>
+        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Numbers/number-words.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -86,9 +86,9 @@
         <key>maxTextureSize</key>
         <QSize>
             <key>width</key>
-            <int>2048</int>
+            <int>1024</int>
             <key>height</key>
-            <int>2048</int>
+            <int>1024</int>
         </QSize>
         <key>fixedTextureSize</key>
         <QSize>
@@ -141,7 +141,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>animal-words.json</filename>
+                <filename>number-words.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,18 +188,36 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">bee-word.png</key>
-            <key type="filename">bird-word.png</key>
-            <key type="filename">butterfly-word.png</key>
-            <key type="filename">cat-word.png</key>
-            <key type="filename">chicken-word.png</key>
-            <key type="filename">dog-word.png</key>
-            <key type="filename">donkey-word.png</key>
-            <key type="filename">fish-word.png</key>
-            <key type="filename">hen-word.png</key>
-            <key type="filename">sheep-word.png</key>
-            <key type="filename">squirrel-word.png</key>
-            <key type="filename">turtle-word.png</key>
+            <key type="filename">--word.png</key>
+            <key type="filename">0-word.png</key>
+            <key type="filename">1-word.png</key>
+            <key type="filename">10-word.png</key>
+            <key type="filename">100-word.png</key>
+            <key type="filename">11-word.png</key>
+            <key type="filename">12-word.png</key>
+            <key type="filename">13-word.png</key>
+            <key type="filename">14-word.png</key>
+            <key type="filename">15-word.png</key>
+            <key type="filename">16-word.png</key>
+            <key type="filename">17-word.png</key>
+            <key type="filename">18-word.png</key>
+            <key type="filename">19-word.png</key>
+            <key type="filename">2-word.png</key>
+            <key type="filename">20-word.png</key>
+            <key type="filename">3-word.png</key>
+            <key type="filename">30-word.png</key>
+            <key type="filename">4-word.png</key>
+            <key type="filename">40-word.png</key>
+            <key type="filename">5-word.png</key>
+            <key type="filename">50-word.png</key>
+            <key type="filename">6-word.png</key>
+            <key type="filename">60-word.png</key>
+            <key type="filename">7-word.png</key>
+            <key type="filename">70-word.png</key>
+            <key type="filename">8-word.png</key>
+            <key type="filename">80-word.png</key>
+            <key type="filename">9-word.png</key>
+            <key type="filename">90-word.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -207,18 +225,36 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>bee-word.png</filename>
-            <filename>butterfly-word.png</filename>
-            <filename>dog-word.png</filename>
-            <filename>fish-word.png</filename>
-            <filename>squirrel-word.png</filename>
-            <filename>turtle-word.png</filename>
-            <filename>bird-word.png</filename>
-            <filename>cat-word.png</filename>
-            <filename>chicken-word.png</filename>
-            <filename>donkey-word.png</filename>
-            <filename>sheep-word.png</filename>
-            <filename>hen-word.png</filename>
+            <filename>--word.png</filename>
+            <filename>1-word.png</filename>
+            <filename>2-word.png</filename>
+            <filename>3-word.png</filename>
+            <filename>4-word.png</filename>
+            <filename>5-word.png</filename>
+            <filename>6-word.png</filename>
+            <filename>7-word.png</filename>
+            <filename>8-word.png</filename>
+            <filename>9-word.png</filename>
+            <filename>10-word.png</filename>
+            <filename>11-word.png</filename>
+            <filename>12-word.png</filename>
+            <filename>13-word.png</filename>
+            <filename>14-word.png</filename>
+            <filename>15-word.png</filename>
+            <filename>16-word.png</filename>
+            <filename>17-word.png</filename>
+            <filename>18-word.png</filename>
+            <filename>19-word.png</filename>
+            <filename>20-word.png</filename>
+            <filename>30-word.png</filename>
+            <filename>40-word.png</filename>
+            <filename>50-word.png</filename>
+            <filename>60-word.png</filename>
+            <filename>70-word.png</filename>
+            <filename>80-word.png</filename>
+            <filename>90-word.png</filename>
+            <filename>100-word.png</filename>
+            <filename>0-word.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

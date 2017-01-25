@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.2.2</string>
         <key>fileName</key>
-        <string>C:/Users/Orly/Desktop/Learn English Fun Way/assets/Animals/animals.tps</string>
+        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Animals/animals.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -192,14 +192,14 @@
             <key type="filename">bird.png</key>
             <key type="filename">butterfly.png</key>
             <key type="filename">cat.png</key>
-            <key type="filename">chicken.png</key>
             <key type="filename">dog.png</key>
             <key type="filename">donkey.png</key>
             <key type="filename">fish.png</key>
+            <key type="filename">hen.png</key>
             <key type="filename">mouse.png</key>
             <key type="filename">parrot.png</key>
             <key type="filename">pig.png</key>
-            <key type="filename">ship.png</key>
+            <key type="filename">sheep.png</key>
             <key type="filename">squirrel.png</key>
             <key type="filename">turtle.png</key>
             <struct type="IndividualSpriteSettings">
@@ -213,16 +213,16 @@
             <filename>bird.png</filename>
             <filename>butterfly.png</filename>
             <filename>cat.png</filename>
-            <filename>chicken.png</filename>
             <filename>dog.png</filename>
             <filename>donkey.png</filename>
             <filename>fish.png</filename>
             <filename>mouse.png</filename>
             <filename>parrot.png</filename>
             <filename>pig.png</filename>
-            <filename>ship.png</filename>
             <filename>squirrel.png</filename>
             <filename>turtle.png</filename>
+            <filename>hen.png</filename>
+            <filename>sheep.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
