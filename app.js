@@ -1,7 +1,6 @@
 var mongojs = require("mongojs");
 var bcrypt = require("bcryptjs"), SALT_WORK_FACTOR = 10;
-var db = mongojs('mongodb://orlyohreally:92Prod92Prod@ds117189.mlab.com:17189/heroku_r3fhp6xc', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
-//var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
+var db = mongojs('localhost:27017/LEFWdb', ['SpreadSheets', 'Results', 'test', 'Exercise', 'Topics', 'Exercise', 'Topics', "Users"]);
 //db.Topics.find({"Name":"Animals"}, function(err, res){console.log(res[0])})
 
 //db.SpreadSheets.aggregate( [ { $match:  { "Name": "menu_items"}}, {$lookup: {    from: "db.Topics",     localField: "Content.filename",    foreignField: "Name",    as: "Properties"}  }])
@@ -13,14 +12,13 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/client/index.html');
 });
 app.use('/client', express.static(__dirname + '/client'));
-app.use(favicon(__dirname + '/favicon.ico'));
-//serv.listen(5000);
-app.listen(process.env.PORT || 3000, function() {
-	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.use(favicon(__dirname + '/client/img/favicon.ico'));
+serv.listen(2000);
 console.log("Server started");
 SOCKET_LIST = {};
-var io = require('socket.io')(serv);
+var io = require('socket.io')(serv, {});
+
+
 var Properties = {};
 Properties.Topics = [];
 Properties.Numbers = {};
@@ -28,8 +26,28 @@ Properties.Letters = {};
 Properties.Forms = {};
 Properties.Buttons = {};
 			
-
+var session = require('client-sessions');
+app.use(session({
+	cookieName: 'session',
+	secret: 'orlyohreally',
+	duration: 1,
+	activeDuration:1,
+	httpOnly: true,
+	secure: true,
+	ephemeral: true
+	}));	
 io.sockets.on('connection', function(socket) {
+	socket.on('disconnect', function(){
+		console.log("socket disconnection");
+	})
+	
+	if(session && session.user) {
+		db.Users.find({"UserName":session.user.UserName}, function(err, res){
+			if(res) {
+				socket.emit('Old session', {user: session.user});
+			}
+		});
+	}
 	/*socket.id = Math.random;
 	SOCKET_LIST[socket.id] = socket;*/
 	/*socket.on('disconnect', function(){
@@ -40,7 +58,7 @@ io.sockets.on('connection', function(socket) {
 		db.topics.drop();
 		console.log("socket disconnection");
 	})*/
-	/*db.SpreadSheets.find({"Name":"Animals"}, function(err, res){
+	/*db.SpreadSheets.find({"Name":"Tasks"}, function(err, res){
 		res = res[0].Frames;
 		for(var i = 0; i < res.length; i++){
 			res[i].filename = res[i].filename.substring(0, res[i].filename.length - ".png".length);
@@ -50,9 +68,9 @@ io.sockets.on('connection', function(socket) {
 			delete res[i].sourceSize;
 			delete res[i].pivot;
 			//db.test.update({"Content.Word": "bee"}, {$set:{"Content.$.frame":{"x":50, "y":50}}})
-			db.Exercise.update({"Name": "Match the animals with their names", "Content.Word":res[i].filename}, {$set:{'Content.$.frame':res[i].frame}}, function(err, res){
+			db.Exercise.update({"Name": "Find numbers from 10 to 100", "Content.Word":res[i].filename}, {$set:{'Content.$.frame':res[i].frame}}, function(err, res){
 				//console.log("result:", res);
-				db.SpreadSheets.find({"Name":"Animals-words"}, function(err, res){
+				db.SpreadSheets.find({"Name":"Numbers-words"}, function(err, res){
 					res = res[0].Frames;
 					for(var i = 0; i < res.length; i++){
 						res[i].filename = res[i].filename.substring(0, res[i].filename.length - "-word.png".length);
@@ -62,7 +80,7 @@ io.sockets.on('connection', function(socket) {
 						delete res[i].sourceSize;
 						delete res[i].pivot;
 						//db.test.update({"Content.Word": "bee"}, {$set:{"Content.$.frame":{"x":50, "y":50}}})
-						db.Exercise.update({"Name": "Match the animals with their names", "Content.Word":res[i].filename}, {$set:{'Content.$.Wordsframe':res[i].frame}}, function(err, res){
+						db.Exercise.update({"Name": "Find numbers from 10 to 100", "Content.Word":res[i].filename}, {$set:{'Content.$.Wordsframe':res[i].frame}}, function(err, res){
 							console.log("result:", res);
 						})
 					}
@@ -238,8 +256,9 @@ io.sockets.on('connection', function(socket) {
 							if(res){
 								User.Password = hash;
 								console.log("hash:", User.Password);
-								db.Users.insert({"UserName": User.UserName, "Password": User.Password, "Accent":User.Accent}, function(err, res){
+								db.Users.insert({"UserName": User.UserName, "Password": User.Password, "Accent":User.Accent, "Points":0}, function(err, res){
 									if(res) {
+										session.user = User;
 										socket.emit('newUser', {
 											res:true
 										});
@@ -278,6 +297,7 @@ io.sockets.on('connection', function(socket) {
 					var User = res[0];
 					bcrypt.compare(data.User.Password,res[0].Password, function(err, res) {
 						console.log("emitting", res);
+						session.user = User;
 						socket.emit('auth', {res:res, User: User});
 					})
 				}
@@ -291,7 +311,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('getTask', function(data){
 		//console.log("TaskName", data.TaskName);
 		db.Exercise.find({"Name":data.TaskName}, function(err, res){
-			console.log("emitting Animals");
+			//console.log("emitting Animals", res[0].Content);
 			socket.emit('getTask', {
 				Content: res[0].Content
 			})
@@ -299,6 +319,18 @@ io.sockets.on('connection', function(socket) {
 	})						
 	socket.on('Result', function(data){
 		console.log("result", data.Result);
-		db.Results.insert(data.Result, function(err, res){});
+		db.Results.insert(data.Result, function(err, res){
+			if(res) {
+				db.Users.update({"UserName" : data.Result.UserName}, {$inc:{Points:data.Result.Points}}, function(err, res){});
+			}
+		});
+	})
+	socket.on('Logout', function(data){
+		console.log("logout");
+		delete session.user;
+		delete session;
+		socket.emit('Logout', {
+			res: true
+		})
 	})
 })

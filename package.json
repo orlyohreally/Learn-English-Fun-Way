@@ -2,16 +2,22 @@
   "name": "lefw",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "app-script.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Orly Knop",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orlyohreally/LearnEnglishFunWay.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orlyohreally/LearnEnglishFunWay/issues"
+  },
+  "homepage": "https://github.com/orlyohreally/LearnEnglishFunWay#readme",
   "dependencies": {
-    "express": "4.14.0",
-	"socket.io" : "1.5.1"
-  },
-  "engines":{
-	"node": "4.6.0"
+    "express": "^4.14.0",
+    "screenfull": "^3.0.2"
   }
 }

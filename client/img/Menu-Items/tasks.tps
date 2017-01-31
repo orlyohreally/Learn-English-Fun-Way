@@ -6,7 +6,7 @@
         <key>texturePackerVersion</key>
         <string>4.2.2</string>
         <key>fileName</key>
-        <string>C:/Users/Orly/Desktop/Learn English Fun Way/assets/Menu-Items/tasks.tps</string>
+        <string>C:/Users/Orly/Desktop/Learn English Fun Way/client/img/Menu-Items/tasks.tps</string>
         <key>autoSDSettings</key>
         <array>
             <struct type="AutoSDSettings">
@@ -190,16 +190,19 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">AlphabetSong.png</key>
             <key type="filename">CountAnimals.png</key>
+            <key type="filename">Find numbers after 100.png</key>
+            <key type="filename">Find numbers from 0 to 9.png</key>
+            <key type="filename">Find numbers from 10 to 100.png</key>
             <key type="filename">FindTheAnimal.png</key>
-            <key type="filename">LearningNumbersAfter100.png</key>
-            <key type="filename">LearningNumbersFrom0To10.png</key>
-            <key type="filename">LearningNumbersFrom11To100.png</key>
             <key type="filename">LearningTheLetterSounds.png</key>
-            <key type="filename">MatchTheAnimalsWithTheirNames.png</key>
             <key type="filename">MemoryGame.png</key>
-            <key type="filename">NameTheAnimals.png</key>
+            <key type="filename">Name numbers after 100.png</key>
+            <key type="filename">Name numbers from 0 to 9.png</key>
+            <key type="filename">Name numbers from 10 to 100.png</key>
+            <key type="filename">Name-animals.png</key>
             <key type="filename">NameTheLetter.png</key>
             <key type="filename">Reading.png</key>
+            <key type="filename">Spell animal names.png</key>
             <key type="filename">TellingTime.png</key>
             <key type="filename">TraceTheLetters.png</key>
             <key type="filename">Unscramble-animal-names.png</key>
@@ -214,17 +217,20 @@
             <filename>AlphabetSong.png</filename>
             <filename>NameTheLetter.png</filename>
             <filename>LearningTheLetterSounds.png</filename>
-            <filename>FindTheAnimal.png</filename>
-            <filename>MatchTheAnimalsWithTheirNames.png</filename>
             <filename>MemoryGame.png</filename>
-            <filename>NameTheAnimals.png</filename>
             <filename>Unscramble-animal-names.png</filename>
             <filename>Reading.png</filename>
             <filename>CountAnimals.png</filename>
             <filename>TellingTime.png</filename>
-            <filename>LearningNumbersAfter100.png</filename>
-            <filename>LearningNumbersFrom11To100.png</filename>
-            <filename>LearningNumbersFrom0To10.png</filename>
+            <filename>Name-animals.png</filename>
+            <filename>Name numbers after 100.png</filename>
+            <filename>Name numbers from 0 to 9.png</filename>
+            <filename>Name numbers from 10 to 100.png</filename>
+            <filename>Find numbers after 100.png</filename>
+            <filename>Find numbers from 10 to 100.png</filename>
+            <filename>Find numbers from 0 to 9.png</filename>
+            <filename>Spell animal names.png</filename>
+            <filename>FindTheAnimal.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

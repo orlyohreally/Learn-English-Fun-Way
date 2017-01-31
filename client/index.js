@@ -12,6 +12,7 @@
 				
 		$(window).resize(respondCanvas);
 		
+		
 		var Mode = {};
 		var Task = {};
 		var Rewards = {};
@@ -57,7 +58,7 @@
 
 		Profile.width = 540;
 		Profile.height = 180;
-		Profile.UserName = "Userdbname";
+		
 		Profile.Accent = "UK English Male";
 		NewAccent = Profile.Accent
 		Profile.LoggedIn = false;
@@ -82,9 +83,23 @@
 		Screen.k_width = MenuItem.rwidth / MenuItem.width;
 		Screen.k_height =  MenuItem.rheight / MenuItem.height;
 		
-		
 		function respondCanvas(){ 
-			
+			try{
+			console.log("UserName:", document.getElementById("UserName").value);
+			console.log("Password:", document.getElementById("Password").value);
+			console.log(Profile.Password, Profile.UserName);
+				Profile.UserName = document.getElementById("UserName").value;
+				Profile.Password = document.getElementById("Password").value;
+				$("#UserName").remove();
+				$("#Password").remove();
+				$("#inputdiv").remove();
+			}
+			catch(e){
+				if(!Profile.LoggedIn) {
+					Profile.UserName = "";
+					Profile.Password = "";
+				}
+			}
 			c.attr('width', $(container).width()); //max width
 			c.attr('height', $(container).height() ); //max height
 			Screen.width = $(container).width();
@@ -520,18 +535,21 @@
 				//Rewards
 				drawRewardsButton(Rewards.leftSpace, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
 				//Progress button
-				drawProgressButton(Rewards.leftSpace + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
+				drawProgressButton(Rewards.leftSpace + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228);
 				//Phrases button
-				drawPhrasesButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
+				drawPhrasesButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228);
 				//Quiz button
-				drawQuizButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
-				drawQuizButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228)
+				drawQuizButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228);
+				drawQuizButton(Rewards.leftSpace + Rewards.size + 68 + Rewards.size + 68 + Rewards.size + 68, Rewards.topSpace, Rewards.size, Rewards.size*75/228);
 			}
 			if(!Profile.LoggedIn) {
 				//Log in button
-				drawLogInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace, 20, Profile.size_btn, Profile.size_btn*75/228)
+				drawLogInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace, 20, Profile.size_btn, Profile.size_btn*75/228);
 				//Sign in button
-				drawSignInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) -  Profile.size_btn - MenuItem.leftSpace, (20 + 5) + Profile.size_btn*75/228, Profile.size_btn, Profile.size_btn*75/228)
+				drawSignInButton((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) -  Profile.size_btn - MenuItem.leftSpace, (20 + 5) + Profile.size_btn*75/228, Profile.size_btn, Profile.size_btn*75/228);
+			}
+			else {
+				drawProfilePicture(((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace) + Profile.size_btn * 1/ 6, 20, Profile.size_btn * 2/3, Profile.size_btn * 2/ 3);
 			}
 			//Sound on button
 			if(sound_on)
@@ -672,10 +690,10 @@
 			})
 			return false;
 		}
-		function checkProfileData() {
-			console.log("checking data", Profile);
+		function checkProfileData(UserName, Password) {
+			console.log("checking data", UserName, Password);
 			
-			if(Profile.Password != "" && Profile.UserName != "" && Profile.Password != "Password" && Profile.UserName != "Username" )
+			if(Password != "" && UserName != "")
 				return true;
 			return false;
 		}
@@ -1119,9 +1137,9 @@
 				X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 				Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 				drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
-				ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 				drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 			}
@@ -1143,9 +1161,9 @@
 				Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 				drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
 				//console.log("retyping", Profile.UserName)
-				ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 				drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 			}
@@ -1175,8 +1193,8 @@
 						BritishAccent()
 				drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				
 			}
 			
@@ -1207,8 +1225,8 @@
 				drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				console.log("Accent = ", NewAccent)
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				
 			}
 			/*
@@ -1833,10 +1851,11 @@
 			}, false);	
 		}
 		function getUserNameLogIn(str, x, y){
+			console.log("clicled")
 			$(document).keydown(function(e){
 					if(Profile.storeUserNameLogIn == true) {
 					key = e.which || e.keyCode;
-					if(key >= 48 && key <= 105) {
+					/*if(key >= 48 && key <= 105) {
 						if(Profile.UserName != "Username")
 							Profile.UserName = Profile.UserName + String.fromCharCode(key);
 						else
@@ -1847,7 +1866,9 @@
 						}
 					else if(key == 8)
 						Profile.UserName = Profile.UserName.substring(0, Profile.UserName.length-1);
-					delete key, e
+					delete key, e*/
+						Profile.UserName = $("#UserName").value;
+						console.log(Profile.UserName);
 					}
 					
 				});
@@ -1857,11 +1878,11 @@
 						X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 						Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 						drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
-						ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+						//ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
 						drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 						drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
-						ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-						ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 						delete key, e
 					}
 				});
@@ -1895,11 +1916,11 @@
 						X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 						Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 						drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
-						ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+						//ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
 						drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 						drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
-						ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-						ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 						delete key
 					}
 				});
@@ -1944,8 +1965,8 @@
 							BritishAccent()
 						drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 						drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
-						ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-						ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 						
 					delete key, e
 					}
@@ -1989,8 +2010,8 @@
 								BritishAccent()
 						drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 						drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
-						ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-						ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+						//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 						delete key
 					}
 				});
@@ -2086,9 +2107,39 @@
 					drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 					drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 					ctx.fillStyle='#000000';
-					ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
-					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+					//ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+					//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+					//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
+					var div = document.createElement('inputDiv');
+					div.innerHTML = "<input id = 'UserName' name = 'UserName' autofocus/><input id = 'Password' name = 'UserName' autofocus/>";
+					//mouseInRect(X_ + 35 / 368 * (MenuItem.size) / 202 * 368, Y_ + 115 / 202 * MenuItem.size, 297 / 368 * (MenuItem.size) / 202 * 368, 35 / 202 * MenuItem.size)
+					//mouseInRect(X_ + 35 / 368 * (MenuItem.size) / 202 * 368, Y_ + 57 / 202 * MenuItem.size, 297 / 368 * (MenuItem.size) / 202 * 368, 35 / 202 * MenuItem.size)
+					document.getElementById("mainDiv").appendChild(div);
+					document.getElementById("UserName").style.top = (Y_ + 57 / 202 * MenuItem.size) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.left = (X_ + 35 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.paddingLeft = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.paddingRight = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.width = 297 / 368 * (MenuItem.size) / 202 * 368*Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.height = 35 / 202 * MenuItem.size * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.border = "2px solid";
+					document.getElementById('UserName').style.position = "absolute";
+					document.getElementById('UserName').style.backgroundColor = "transparent";
+					document.getElementById("Password").style.top = (Y_ + 115 / 202 * MenuItem.size) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.left = (X_ + 35 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.paddingLeft = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.paddingRight = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.width = 297 / 368 * (MenuItem.size) / 202 * 368 *Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.height = 35 / 202 * MenuItem.size * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.border = "2px solid";
+					document.getElementById('Password').style.position = "absolute";
+					document.getElementById('Password').style.backgroundColor = "transparent";
+					console.log("Profile.UserName, Profile.Password", Profile.UserName, Profile.Password);
+					if(Profile.UserName)
+						document.getElementById('UserName').value = Profile.UserName;
+					if(Profile.Password)
+						document.getElementById('Password').value = Profile.Password;
+					console.log("input code");
+					
 					pressedUserNameLogIn = 0;
 					pressedPasswordLogIn = 0;
 					delete X_, Y_
@@ -2119,10 +2170,7 @@
 				drawHeader();
 				Mode.Results = true;
 				stop_loading = true;
-				if(Profile.LoggedIn)
-					socket.emit("Result", {Result: Task.Result});
 				var Correct = Answers.length;
-				//console.log(Correct);
 				if(Forms_loaded){
 					var frame = Properties.Forms["result_form.png"];
 					var Result_form = {};
@@ -2143,23 +2191,12 @@
 					var digit = {};
 					digit.h = 12  * Result_form.h / frame.h;
 					digit.w = digit.h * digit_frame.w / digit_frame.h;
-					/*var letter_frame = Properties.Letters["small-dark-m.png"];
-					var letter = {};
-					letter.h = 12  * Result_form.h / frame.h;
-					letter.w = letter.h * letter_frame.w / letter_frame.h;*/
 					drawDigit(Correct, Result_form.x + 115 * Result_form.w / frame.w, Result_form.y + 51 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "small-dark");
-					/*fillRect(0, Result_form.y + 51  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 39  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 68  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 56  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 86  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 74  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 103  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 91  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 120  * Result_form.h / frame.h, 1000, 1);
-					fillRect(0, Result_form.y + 108  * Result_form.h / frame.h, 1000, 1);*/
 					drawDigit(Total, Result_form.x + 115 * Result_form.w / frame.w, Result_form.y + 68 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "small-dark");
 					var points = countPoints(Answers, Total, Max);
+					Task.Result.Points = points;
+					console.log(points, Task.Result, Task.Result.Points);
+					
 					var stars = Math.round(points / (Max * Total) * 5);
 					points = points +"";
 					for(var j = 0; j < points.length; j++)
@@ -2198,7 +2235,9 @@
 							drawLetter(sec[j], Result_form.x + 115 * Result_form.w / frame.w + (i + j) * digit.w, Result_form.y + 120 * Result_form.h / frame.h - digit.h, digit.w, digit.h, "small-dark");
 						}
 					}
-					
+					if(Profile.LoggedIn)
+					socket.emit("Result", {Result: Task.Result});
+				
 				}
 				else {
 					console.log("waiting for result form");
@@ -2217,13 +2256,42 @@
 					size_ = 2*(Y_ -  0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height)) + MenuItem.size;
 					X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (size_))/2
 					drawSignInForm(X_, Y_, size_, size_);
+					var div = document.createElement('inputDiv');
+					div.innerHTML = "<input id = 'UserName' name = 'UserName' autofocus/><input id = 'Password' name = 'UserName' autofocus/>";
+					
+					document.getElementById("mainDiv").appendChild(div);
+					document.getElementById("UserName").style.top = (Y_ + 57 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.left = (X_ + 35 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.paddingLeft = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.paddingRight = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.width = 298/ 368 * size_*Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.height = 36 / 368 * size_ * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("UserName").style.border = "2px solid";
+					document.getElementById('UserName').style.position = "absolute";
+					document.getElementById('UserName').style.backgroundColor = "transparent";
+					document.getElementById("Password").style.top = (Y_ + 115 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.left = (X_ + 35 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.paddingLeft = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.paddingRight = (20 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.width = 298/ 368 * size_*Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.height = 36 / 368 * size_ * Math.min(Screen.k_width, Screen.k_height);
+					document.getElementById("Password").style.border = "2px solid";
+					document.getElementById('Password').style.position = "absolute";
+					document.getElementById('Password').style.backgroundColor = "transparent";
+					console.log("Profile.UserName, Profile.Password", Profile.UserName, Profile.Password);
+					if(Profile.UserName)
+						document.getElementById('UserName').value = Profile.UserName;
+					if(Profile.Password)
+						document.getElementById('Password').value = Profile.Password;
+					
+					console.log("input code");
 					BritishAccent()
 					drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 					drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 					ctx.fillStyle='#000000';
-					ctx.font = 35 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
-					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+					//ctx.font = 35 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+					//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+					//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 					pressedUserNameSignIn = 0;
 					pressedPasswordSignIn = 0;
 					
@@ -2253,7 +2321,7 @@
 					AustralianAccent()
 			if(NewAccent == "UK English Male")
 					BritishAccent()
-			var input = document.getElementById("hiddenInput");
+			/*var input = document.getElementById("hiddenInput");
 				input.style.position = "absolute";
 				input.style.top =  (Y_ + 57 / 368 * size_) * Math.min(Screen.k_width, Screen.k_height);
 				//console.log(X_, Y_);
@@ -2262,9 +2330,9 @@
 				//input.style.autofocus = true;
 				input.style.height =  36 / 368 * size_* Math.min(Screen.k_width, Screen.k_height);
 				input.style.width = 298/ 368 * size_* Math.min(Screen.k_width, Screen.k_height);
-				fillRect(X_, Y_, 100, input.style.height);
+				fillRect(X_, Y_, 100, input.style.height);*/
 				//console.log(36 / 368 * size_* Math.min(Screen.k_width, Screen.k_height), 298 / 368 * size_* Math.min(Screen.k_width, Screen.k_height));
-			if(pressedUserNameSignIn != 0)
+			/*if(pressedUserNameSignIn != 0)
 				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 			else
 				Profile.UserName = ""
@@ -2272,6 +2340,7 @@
 				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 			else
 				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+			*/
 			pressedUserNameSignIn = pressedUserNameSignIn + 1;
 			drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 			drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
@@ -2295,7 +2364,7 @@
 				X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 				Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 				drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
-				ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+				/*ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
 				if(pressedUserNameLogIn != 0)
 					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				else
@@ -2304,7 +2373,7 @@
 					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				else
 					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-					//Profile.Password = ""
+				*/
 				pressedUserNameLogIn = pressedUserNameLogIn + 1;
 				drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 				drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
@@ -2312,7 +2381,7 @@
 					Profile.storeUserNameLogIn = true;
 					if(Profile.storePasswordLogIn == true)
 						Profile.storePasswordLogIn = false;
-					getUserNameLogIn(Profile.UserName, X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368, Y_ + 57 / 202 * MenuItem.size + 20 / 202 * MenuItem.size)
+					//getUserNameLogIn(Profile.UserName, X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368, Y_ + 57 / 202 * MenuItem.size + 20 / 202 * MenuItem.size)
 				}
 				else {
 					Profile.storeUserNameLogIn = true;
@@ -2321,27 +2390,27 @@
 				}
 		}
 		function PasswordAreaClickedLogIn() {
+
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 			Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 			clearScreenRect((X_ + 35 / 368 * (MenuItem.size) / 202 * 368, Y_ + 57 / 202 * MenuItem.size, 297 / 368 * (MenuItem.size) / 202 * 368, 35 / 202 * MenuItem.size));
 				X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 				Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 				drawLogInForm(X_, Y_, (MenuItem.size) / 202 * 368, MenuItem.size);
-				ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
+				/*ctx.font = 40 * Math.min(Screen.k_width, Screen.k_height) + "px Ariel"
 				if(pressedUserNameLogIn != 0)
 					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				else
 					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 80 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
-					//Profile.UserName = ""
 				if(pressedPasswordLogIn != 0)
 					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 138 / 368 * (MenuItem.size) / 202 * 368) * Math.min(Screen.k_width, Screen.k_height))
 				else
 					Profile.Password = ""
-				pressedPasswordLogIn = pressedPasswordLogIn + 1;
+				*/pressedPasswordLogIn = pressedPasswordLogIn + 1;
 				drawLogInLogInButton(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 				drawLogInCancelButton(X_ + 49 + (MenuItem.size) / 202 * 156 + 35, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202)
 				console.log("password area clicked", Profile.storeUserNameLogIn, Profile.storePasswordLogIn)
-				if(Profile.storePasswordLogIn != false && Profile.storePasswordLogIn != true) {
+				/*if(Profile.storePasswordLogIn != false && Profile.storePasswordLogIn != true) {
 					Profile.storePasswordLogIn = true;
 					getPasswordLogIn(Profile.Password, X_ + (35 + 20) / 368 * (MenuItem.size) / 202 * 368, Y_ + 57 / 202 * MenuItem.size + 20 / 202 * MenuItem.size)
 					if(Profile.storeUserNameLogIn == true)
@@ -2351,7 +2420,8 @@
 					Profile.storePasswordLogIn = true;
 					if(Profile.storeUserNameLogIn == true)
 						Profile.storeUserNameLogIn = false;
-				}
+				}*/
+				
 		}
 		function PasswordAreaClickedSignIn() {
 				Y_ = (MenuItem.topSpace + 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height)) / 2
@@ -2370,7 +2440,7 @@
 				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 			
-				if(pressedUserNameSignIn != 0)
+				/*if(pressedUserNameSignIn != 0)
 					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				else
 					ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
@@ -2378,6 +2448,7 @@
 					ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				else
 					Profile.Password = ""
+				*/
 				pressedPasswordSignIn = pressedPasswordSignIn + 1;
 				console.log("password area clicked", Profile.storeUserNameLogIn, Profile.storePasswordLogIn)
 				if(Profile.storePasswordSignIn != false && Profile.storePasswordSignIn != true) {
@@ -2822,8 +2893,8 @@
 						loadForms()
 				stop_loading = false;
 				drawLoading();
-				Profile.UserName = "Username"
-				Profile.Password = "Password"
+				//Profile.UserName = "Username"
+				//Profile.Password = "Password"
 				//delete Profile.storePasswordLogIn;
 				//delete Profile.storeUserNameLogIn;
 				if(Profile.storeUserNameLogIn == true)
@@ -2835,10 +2906,14 @@
 			//Sign Up button has been clicked
 			if(!Mode.Exercise &&!Profile.LoggedIn && !Mode.LogIn && !Mode.LogIn && mouseX >= ((Screen.width)/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace) * Math.min(Screen.k_width, Screen.k_height) && mouseX <= ((Screen.width)/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace + Profile.size_btn) * Math.min(Screen.k_width, Screen.k_height) && mouseY >= ((20 + 5) + Profile.size_btn*75/228)* Math.min(Screen.k_width, Screen.k_height) && mouseY <= ((20 + 5) + Profile.size_btn*75/228 + Profile.size_btn*75/228)* Math.min(Screen.k_width, Screen.k_height)) {
 				if(Forms_loaded == false)
-					loadForms()
-				showSignInForm()
-				Profile.UserName = "Username"
-				Profile.Password = "Password"
+					loadForms();
+				showSignInForm();
+				
+			
+				//Profile.UserName = "Username"
+				Profile.UserName = "";
+				//Profile.Password = "Password"
+				Profile.Password = "";
 			}
 			delete X_l, X_r, j;
 			if(Mode.LogIn && mouseInRect((Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size *4/3) / 205 * 368)/2, 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size * 4/3) / 2, (MenuItem.size *4/3) / 205 * 368, MenuItem.size * 4/3)) {
@@ -2858,6 +2933,14 @@
 					Profile.storeUserNameLogIn = false;
 				if(Profile.storePasswordLogIn == true)
 					Profile.storePasswordLogIn = false;
+				console.log("UserName:", document.getElementById("UserName").value);
+				console.log("Password:", document.getElementById("Password").value);
+				Profile.UserName = "";
+				Profile.Password = "";
+				$("#UserName").remove();
+				$("#Password").remove();
+				$("#inputdiv").remove();
+				
 				clearScreenRect(0, 0, Screen.width/ Math.min(Screen.k_width, Screen.k_height), Screen.height / Math.min(Screen.k_width, Screen.k_height) )
 				respondCanvas()
 				
@@ -2873,14 +2956,20 @@
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 			Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 			if(Mode.LogIn && mouseInRect(X_ + 35 / 368 * (MenuItem.size) / 202 * 368, Y_ + 115 / 202 * MenuItem.size, 297 / 368 * (MenuItem.size) / 202 * 368, 35 / 202 * MenuItem.size)){
-				PasswordAreaClickedLogIn()
+				//PasswordAreaClickedLogIn();
+				
 			}
 			//login button clicked LogIn Mode
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - (MenuItem.size) / 202 * 368)/2
 			Y_ = 0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height) + (0.6* Screen.height / Math.min(Screen.k_width, Screen.k_height) - MenuItem.size) / 2;
 			if(Mode.LogIn && mouseInRect(X_ + 47, Y_ + MenuItem.size - MenuItem.size * 37 / 202 / 2 - 40, (MenuItem.size) / 202 * 156, MenuItem.size * 37 / 202))
 			{
-				if(checkProfileData()) {
+				console.log("UserName:", document.getElementById("UserName").value);
+				console.log("Password:", document.getElementById("Password").value);
+				
+				if(checkProfileData(document.getElementById("UserName").value, document.getElementById("Password").value)) {
+					Profile.UserName = document.getElementById("UserName").value;
+					Profile.Password = document.getElementById("Password").value;
 					var User = {};
 					User.UserName = Profile.UserName;
 					User.Password = Profile.Password;
@@ -2898,15 +2987,20 @@
 							Profile.storePasswordLogIn = false;
 							console.log(Profile.UserName, Profile.Password)
 							clearScreenRect(0, 0, Screen.width/ Math.min(Screen.k_width, Screen.k_height), Screen.height / Math.min(Screen.k_width, Screen.k_height) )
+							$("#UserName").remove();
+							$("#Password").remove();
+							$("#inputdiv").remove();
 							respondCanvas()
 						}
 						else {
 							console.log("wrong data");
+							alert("wrong data");
 						}
 					});
 				}
 				else {
 					console.log("fill all the information");
+					alert("fill all the information");
 				}
 			}
 			//background has been clicked during LogIn Mode
@@ -2932,7 +3026,7 @@
 			size_ = 2*(Y_ -  0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height)) + MenuItem.size;
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - size_)/2
 			if(Mode.SignIn && mouseInRect(X_ + 35 / 368 * size_, Y_ + 115 / 368 * size_, 298 / 368 * size_, 36 / 368 * size_)) {
-				PasswordAreaClickedSignIn()
+				//PasswordAreaClickedSignIn()
 				//fillRect(X_ + 35 / 368 * size_, Y_ + 115 / 368 * size_, 298 / 368 * size_, 36 / 368 * size_)
 			}
 			if(Mode.SignIn && !(mouseInRect(X_ + 35 / 368 * size_, Y_ + 57 / 368 * size_, 298 / 368 * size_, 36 / 368 * size_) || mouseInRect(X_ + 35 / 368 * size_, Y_ + 115 / 368 * size_, 298 / 368 * size_, 36 / 368 * size_))) {
@@ -2950,8 +3044,8 @@
 			//American accent
 			if(Mode.SignIn && mouseInRect(X_ + 35 / 368 * size_, Y_ + 177 / 368 * size_, 36 / 368 * size_, 23/ 368 * size_)) {
 				AmericanAccent()
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 					
@@ -2962,8 +3056,8 @@
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - size_)/2
 			if(Mode.SignIn && mouseInRect(X_ + 80 / 368 * size_, Y_ + 177 / 368 * size_, 36 / 368 * size_, 23 / 368 * size_)) {
 				AustralianAccent()
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				
@@ -2974,8 +3068,8 @@
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - size_)/2
 			if(Mode.SignIn && mouseInRect(X_ + 124 / 368 * size_, Y_ + 177 / 368 * size_, 36 / 368 * size_, 23 / 368 * size_)) {
 				BritishAccent()
-				ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
-				ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.Password, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+				//ctx.fillText(Profile.UserName, (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), (Y_ + 57 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
 				drawSignInSignInButton(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				drawSignInCancelButton(X_ + 190 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)
 				
@@ -2988,11 +3082,17 @@
 				Mode.SignIn = false;
 				Mode.MenuItem = true;
 				NewAccent = "UK English Male";
-				
+				console.log("UserName:", document.getElementById("UserName").value);
+				console.log("Password:", document.getElementById("Password").value);
 				if(Profile.storeUserNameSignIn == true)
 					Profile.storeUserNameSignIn = false;
 				if(Profile.storePasswordSignIn == true)
 					Profile.storePasswordSignIn = false;
+				Profile.UserName = "";
+				Profile.Password = "";
+				$("#UserName").remove();
+				$("#Password").remove();
+				$("#inputdiv").remove();
 				clearScreenRect(0, 0, Screen.width/ Math.min(Screen.k_width, Screen.k_height), Screen.height / Math.min(Screen.k_width, Screen.k_height) )
 				respondCanvas()
 			}
@@ -3002,7 +3102,9 @@
 			size_ = 2*(Y_ -  0.2* Screen.height / Math.min(Screen.k_width, Screen.k_height)) + MenuItem.size;
 			X_ = (Screen.width / Math.min(Screen.k_width, Screen.k_height) - size_)/2
 			if (Mode.SignIn && mouseInRect(X_ + 20 / 368 * size_, Y_ + 318 / 368 * size_, 157 / 368 * size_, 157 / 368 * size_ * 37 / 156)) {
-				if(checkProfileData()){
+				if(checkProfileData(document.getElementById("UserName").value, document.getElementById("Password").value)){
+					Profile.UserName = document.getElementById("UserName").value;
+					Profile.Password = document.getElementById("Password").value;
 					var User = {};
 					User.UserName = Profile.UserName;
 					User.Password = Profile.Password;
@@ -3027,6 +3129,9 @@
 							console.log(Profile.Accent);
 							console.log(Profile.UserName, Profile.Password, Profile.Accent)
 							clearScreenRect(0, 0, Screen.width / Math.min(Screen.k_width, Screen.k_height), Screen.height / Math.min(Screen.k_width, Screen.k_height) )
+							$("#UserName").remove();
+							$("#Password").remove();
+							$("#inputdiv").remove();
 							respondCanvas()
 						}
 						else {
@@ -3036,7 +3141,7 @@
 					})
 				}
 				else {
-					ctx.fillText("fill all the information", (X_ + (35 + 20) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height), ( Y_ + 115 / 368 * size_ + (36 - 11) / 368 * size_) * Math.min(Screen.k_width, Screen.k_height))
+					alert("Fill all information");
 				}
 			}
 			function selectAnimal(){
@@ -3105,7 +3210,7 @@
 				}
 			}
 			function setTest(Array, N){
-				console.log("set test");
+				console.log("set test", Profile.UserName, Profile.Password);
 				stop_loading = true;
 				Mode.Results = false;
 				Mode.CountDown = false;
@@ -3176,11 +3281,13 @@
 					}, 200)
 				}
 			}
-			function showTask(TaskName, TopicName) {
+			function showTask(TaskName, TopicName,Points, N = 0) {
 				console.log(TaskName);
 				Mode.CountDown = false;
 				Task.TaskName = TaskName;
 				Task.TopicName = TopicName;
+				Task.MaxPoint = Points;
+						
 				if(Profile.LoggedIn) {
 					Task.Result.UserName = Profile.UserName;
 					Task.Result.Exercise = TaskName;
@@ -3198,7 +3305,7 @@
 						stop_loading = false;
 						drawLoading();
 						break;
-					case 'Match the animals with their names':
+					case 'Name animals':
 						console.log("in case");
 						console.log(Task.TaskName.replace(/\s/g,''));
 						Mode[Task.TaskName.replace(/\s/g,'')] = true;
@@ -3206,8 +3313,6 @@
 						frametype2 = "Wordsframe";
 			
 						Mode.Training = true;
-						var N = 6;
-						Task.MaxPoint = 4;
 						if(!Task.loadedAnimalsframeWordsframe)
 							loadAnimalsWords();
 						if(!Task.loadedAnimalsframe)
@@ -3243,8 +3348,6 @@
 					case 'Find the animal':
 						Mode.Findtheanimal = true;
 						Mode.Training = true;
-						var N = 6;
-						Task.MaxPoint = 4;
 						frametype2 = "Wordsframe";
 						frametype1 = "frame";
 			
@@ -3280,13 +3383,10 @@
 						drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
 						
 						break;
-					case 'Learning numbers from 0 to 10':
+					case 'Name numbers from 0 to 9':
 						Mode.Training = true;
-						var N = 6;
-						Task.MaxPoint = 4;
 						frametype2 = "Wordsframe";
 						frametype1 = "frame";
-			
 						if(!Task["loaded" +TopicName + "frameWordsframe"])
 							loadNumbersWords();
 						if(!Task["loaded" +TopicName + "frame"])
@@ -3319,7 +3419,42 @@
 						drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
 						
 						break;
-					
+						case 'Find numbers from 0 to 9':
+							Mode.Training = true;
+							frametype1 = "Wordsframe";
+							frametype2 = "frame";
+							if(!Task["loaded" +TopicName + "frameWordsframe"])
+								loadNumbersWords();
+							if(!Task["loaded" +TopicName + "frame"])
+								loadNumbers();
+							try{
+								console.log(Task.Frames[TaskName].length);
+							}
+							catch(e){
+								stop_loading = false;
+								drawLoading();
+								console.log("getting Animals for the first time", TaskName);
+								socket.emit('getTask', {
+									TaskName: TaskName
+								})
+								socket.on('getTask', function(data){
+									Task.Frames[TaskName] = data.Content;
+									console.log("get Task emit", Task.Frames[TaskName]);
+								})
+							}
+							
+							checkloaded.Numbers(TaskName, N);							
+							try{
+								size_btn = setWordHeight();
+								if(frametype1 == "Wordsframe" && frametype2 == "frame")
+									size_btn = 70;
+							}
+							catch(e) {
+								size_btn = ((0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) - 4 * 10 - (0.6 * Screen.height / Math.min(Screen.k_width, Screen.k_height) - 40) * 2/5) / 5
+							}
+							drawExitButton(Screen.width / Math.min(Screen.k_width, Screen.k_height) - Title.leftSpace - size_btn, 0.2 * Screen.height / Math.min(Screen.k_width, Screen.k_height) + 20, size_btn, size_btn);
+							
+						break;
 				}
 			}
 			
@@ -3406,7 +3541,7 @@
 						Mode.Tasks = false;
 						Mode.MenuItem = false;
 						//console.log(Properties.Tasks);
-						showTask(Properties.Tasks[j][i].Name, Properties.Tasks[j][i].Topic_Name);						
+						showTask(Properties.Tasks[j][i].Name, Properties.Tasks[j][i].Topic_Name, Properties.Tasks[j][i].Max_point, Properties.Tasks[j][i].N_toTest);						
 						i  = Task.display + 1;
 					}
 					else {
@@ -3436,8 +3571,12 @@
 				MenuItem.chosen = MenuItem.clicked;
 				initMenu();
 				delete Task.Result.time;
-				if(Profile.LoggedIn)
+				
+				
+				if(Profile.LoggedIn){
 					socket.emit("Result", {Result: Task.Result});
+					
+				}
 				Task.Result = {};
 			}
 			//MatchTheAnimalsWithTheirNames word has been clicked
@@ -3669,7 +3808,19 @@
 							}, 1000)
 						},1000)
 				}
-			}			
+			}
+			//drawProfilePicture(((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace) + Profile.size_btn * 1/ 6, 20, Profile.size_btn * 2/3, Profile.size_btn * 2/ 3);
+			
+			if((Mode.MenuItem || Mode.Tasks) && Profile.LoggedIn && mouseInRect(((Screen.width )/ Math.min(Screen.k_width, Screen.k_height) - Profile.size_btn - MenuItem.leftSpace) + Profile.size_btn * 1/ 6, 20, Profile.size_btn * 2/3, Profile.size_btn * 2/ 3)) {
+				console.log("clicked profile pic");
+				socket.emit("Logout", {});
+				socket.on("Logout", function(data){
+					if(data.res) {
+						Profile.LoggedIn = false;
+						respondCanvas();
+					}
+				})
+			}
 			
 		}
 		MainCanvas.addEventListener("mousedown", MouseDown);
@@ -3812,8 +3963,52 @@
 	}
 	var current = 0;
 	loadLoading();
+	try {
+		loadButtons();
+		loadAnimals();
+		loadAnimalsWords();
+		loadMenuItems();
+	}
+	catch(e){}
 	var Properties = {};
 	Properties.Topics = [];
+	Profile.LoggedIn = false;
+	socket.on('Old session', function(data) {
+		console.log(data);
+		Profile.UserName = data.user.UserName;
+		Profile.Password = data.user.Password;
+		Profile.Accent = data.user.Accent;
+		Profile.LoggedIn = true;
+	})
+	function displayMenu() {
+		try{
+			var frame = Properties.Buttons["left-arrow.png"];
+			if(Properties.Tasks.length && Properties.Topics.length) {
+				console.log("respondCanvas");
+				console.log("Profile", Profile.UserName, Profile.Password);
+				respondCanvas();
+				MenuItem.ItemList = [];
+				for (i = 0; i < MenuItem.itemsCount; i++) {
+					MenuItem.ItemList[i] = Properties.Topics[i].Name;
+				}
+				Task.itemsCount = [];
+				MenuItem.itemsCount = (Properties.Topics).length;
+				for (q = 0; q < MenuItem.itemsCount; q++) {
+					try{
+						Task.itemsCount[q] = Properties.Tasks[q].length;
+					}
+					catch(e){
+						Task.itemsCount[q] = 0;
+					}
+				}
+			}
+		}
+		catch(e) {
+				setTimeout(function(){
+					displayMenu();
+				})
+			}
+	}
 	function getProperties() {
 		socket.on('getProperties', function(data){
 			console.log("getting data", data);
@@ -3837,26 +4032,9 @@
 			var r_a_width = koef*100;
 			var r_a_x = MenuItem.rwidth / Math.min(Screen.k_width, Screen.k_height) - MenuItem.leftSpace - r_a_width;
 			
-			loadButtons(l_a_x, l_a_y, l_a_width, l_a_height, r_a_x, r_a_y, r_a_width, r_a_height)
+			loadButtons(l_a_x, l_a_y, l_a_width, l_a_height, r_a_x, r_a_y, r_a_width, r_a_height);
 			console.log("drawLoading");
-			if(Properties.Tasks.length && Properties.Topics.length) {
-				console.log("respondCanvas");
-				respondCanvas();
-				MenuItem.ItemList = [];
-				for (i = 0; i < MenuItem.itemsCount; i++) {
-					MenuItem.ItemList[i] = Properties.Topics[i].Name;
-				}
-				Task.itemsCount = [];
-				MenuItem.itemsCount = (Properties.Topics).length;
-				for (q = 0; q < MenuItem.itemsCount; q++) {
-					try{
-						Task.itemsCount[q] = Properties.Tasks[q].length;
-					}
-					catch(e){
-						Task.itemsCount[q] = 0;
-					}
-				}
-			}
+			displayMenu();
 			
 				
 			
